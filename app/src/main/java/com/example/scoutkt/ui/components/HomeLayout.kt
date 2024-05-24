@@ -39,9 +39,12 @@ fun ScaffoldLayout() {
             containerColor = MaterialTheme.colorScheme.primaryContainer,
             contentColor = MaterialTheme.colorScheme.primary,
         ) {
-            Row (modifier = Modifier.wrapContentSize()
-                .fillMaxWidth().padding(25.dp,0.dp,25.dp,0.dp)
-                .height(100.dp).alignByBaseline(), horizontalArrangement = Arrangement.Center, verticalAlignment = Alignment.CenterVertically) {
+            Row (modifier = Modifier
+                .wrapContentSize()
+                .fillMaxWidth()
+                .padding(25.dp, 0.dp, 25.dp, 0.dp)
+                .height(100.dp)
+                .alignByBaseline(), horizontalArrangement = Arrangement.Center, verticalAlignment = Alignment.CenterVertically) {
 
                 Button(onClick = { /*TODO*/ }, modifier = Modifier.padding(5.dp)) {
 
@@ -68,10 +71,11 @@ fun ScaffoldLayout() {
     }) {innerPadding ->
         Column(
             modifier = Modifier
-                .padding(innerPadding),
-            verticalArrangement = Arrangement.spacedBy(16.dp),
+                .padding(innerPadding).fillMaxWidth(),
+            verticalArrangement = Arrangement.spacedBy(16.dp), horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Text("Qua bisogna mettere le card")
+            StockCard()
         }
         
 
