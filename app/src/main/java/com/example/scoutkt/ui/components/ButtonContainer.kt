@@ -9,17 +9,17 @@ fun StockName(stockName: String) {
 }
 
 @Composable
-fun Percentage(value: Int) {
+fun StockPercentage(value: Int) {
     Text("$value")
 }
 
 @Composable
-fun Graph() {
+fun StockGraph() {
 
 }
 
 @Composable
 fun ContainerButton(value: Int,stockName: String) {
-    Percentage(value)
+    StockPercentage(value)
     StockName(stockName)
 }
