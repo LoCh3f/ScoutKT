@@ -14,7 +14,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             ScoutKTTheme {
-                ScaffoldLayout()
+                ScaffoldLayout("home",R.drawable.baseline_home_24)
             }
         }
     }
