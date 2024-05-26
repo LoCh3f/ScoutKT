@@ -14,16 +14,16 @@ fun ComposeNavigation() {
     val  navController = rememberNavController()
     NavHost(navController = navController, startDestination = "Home" ) {
         composable("Home") {
-            ScaffoldLayout(activityName = "Home", id = R.drawable.baseline_home_24)
+            ScaffoldLayout(activityName = "Home", id = R.drawable.baseline_home_24,navController)
         }
         composable("Favorites") {
-            ScaffoldLayout(activityName = "Favorites", id = R.drawable.baseline_assistant_24)
+            ScaffoldLayout(activityName = "Favorites", id = R.drawable.baseline_assistant_24,navController)
         }
         composable("Alarms") {
-            ScaffoldLayout(activityName = "Alarms", id = R.drawable.baseline_alarm_24)
+            ScaffoldLayout(activityName = "Alarms", id = R.drawable.baseline_alarm_24,navController)
         }
         composable("Settings"){
-            ScaffoldLayout(activityName = "Settings", id =R.drawable.baseline_app_settings_alt_24 )
+            ScaffoldLayout(activityName = "Settings", id =R.drawable.baseline_app_settings_alt_24,navController )
 
         }
 

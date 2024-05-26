@@ -1,6 +1,5 @@
 package com.example.scoutkt.ui.components
 
-import androidx.annotation.DrawableRes
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
@@ -10,19 +9,17 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.material3.BottomAppBar
 import androidx.compose.material3.Button
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
-import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import com.example.scoutkt.R
 
 @Composable
-fun SimpleNavigationBar() {
+fun SimpleNavigationBar(navController: NavController) {
     BottomAppBar(
         containerColor = MaterialTheme.colorScheme.primaryContainer,
         contentColor = MaterialTheme.colorScheme.primary)
@@ -36,17 +33,17 @@ fun SimpleNavigationBar() {
             verticalAlignment = Alignment.CenterVertically)
         {
 
-            Button(onClick = { /*TODO*/ }, modifier = Modifier.padding(5.dp)) {
+            Button(onClick = { navController.navigate("Home") }, modifier = Modifier.padding(5.dp)) {
                 Image(painter = painterResource(R.drawable.baseline_home_24), contentDescription = "")
             }
-            Button(onClick = { /*TODO*/ },modifier = Modifier.padding(5.dp)) {
+            Button(onClick = { navController.navigate("Alarms") },modifier = Modifier.padding(5.dp)) {
                 Image(painter = painterResource(R.drawable.baseline_alarm_24), contentDescription ="" )
             }
-            Button(onClick = { /*TODO*/ }, modifier = Modifier.padding(5.dp)) {
+            Button(onClick = { navController.navigate("Favorites") }, modifier = Modifier.padding(5.dp)) {
                 Image(painter = painterResource(R.drawable.baseline_assistant_24), contentDescription ="" )
 
             }
-            Button(onClick = { /*TODO*/ }, modifier = Modifier.padding(5.dp)) {
+            Button(onClick = { navController.navigate("Settings") }, modifier = Modifier.padding(5.dp)) {
                 Image(painter = painterResource(R.drawable.baseline_app_settings_alt_24), contentDescription ="" )
             }
         }
@@ -54,10 +51,3 @@ fun SimpleNavigationBar() {
     }
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
-@Composable
-fun AppHeader(activityName: String,@DrawableRes id: Int) {
-    TopAppBar(title = {Text(activityName)},
-                modifier = Modifier.padding(10.dp),
-                navigationIcon = { Image(painter = painterResource(id), contentDescription = "")})
-}

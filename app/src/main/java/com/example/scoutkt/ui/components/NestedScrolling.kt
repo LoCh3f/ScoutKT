@@ -19,7 +19,7 @@ fun ScrollingStock(innerPadding: PaddingValues) {
         contentPadding = PaddingValues(10.dp)
     ) {
         item {
-            (1..200).forEach{
+            (1..20).forEach{
                 StockCard()
             }
         }
