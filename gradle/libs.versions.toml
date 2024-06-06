@@ -17,6 +17,7 @@ androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "j
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
 androidx-lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "lifecycleRuntimeKtx" }
 androidx-activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "activityCompose" }
+androidx-lifecycle = {group = "androidx.lifecycle", name = "lifecycle-viewmodel-compose",version = "2.8.1"}
 androidx-compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "composeBom" }
 androidx-ui = { group = "androidx.compose.ui", name = "ui" }
 androidx-ui-graphics = { group = "androidx.compose.ui", name = "ui-graphics" }
@@ -34,6 +35,8 @@ firebase-analytics = {group = "com.google.firebase", name = "firebase-analytics"
 firebase-auth = {group = "com.google.firebase", name = "firebase-auth"}
 room = { group = "androidx.room", name = "room-runtime", version = "2.6.1"}
 room-compiler = { group = "androidx.room", name = "room-compiler", version = "2.6.1"}
+coroutines = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-android", version = "1.7.3"}
+
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
