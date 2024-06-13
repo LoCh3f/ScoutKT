@@ -33,6 +33,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name="com.example.scoutkt.registration.RegistrationActivity"
+            android:exported="false"
+            android:label="ScoutKT"
+            android:theme="@style/Theme.ScoutKT"
+        />
+
+
 
     </application>
 
