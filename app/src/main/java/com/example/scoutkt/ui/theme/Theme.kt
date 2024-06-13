@@ -11,13 +11,15 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 
 private val DarkColorScheme = darkColorScheme(
-    primary = Color(0xFFBB86FC), // Purple
+    background = Color(0x00000000), // Purple
+    primary = Color(0xFFFFFFFF), // Purple
     secondary = Color(0xFF03DAC6), // Teal
     tertiary = Color(0xFFCF6679) // Red
 )
 
 private val LightColorScheme = lightColorScheme(
-    primary = Color(0xFF6200EE), // Purple
+    background = Color(0xFFFFFFFF),
+    primary = Color(0x00000000), // Purple
     secondary = Color(0xFF03DAC6), // Teal
     tertiary = Color(0xFFCF6679) // Red
 )
