@@ -43,8 +43,17 @@ fun RegistrationScreen(userPreferences: UserPreferences,OnRegister: () -> Unit) 
             .fillMaxSize()
             .background(color = MaterialTheme.colorScheme.background)
             .padding(16.dp),
+        horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
+        Image(modifier = Modifier.clip(CircleShape),
+            painter = painterResource(id = R.drawable.main_logo), // Sostituisci con il tuo ID risorsa
+            contentDescription = "App Logo",
+        )
+        Spacer(modifier = Modifier.height(16.dp))
+        Text(text = "Sign Up")
+        Spacer(modifier = Modifier.height(16.dp))
+
         OutlinedTextField(
             value = email,
             onValueChange = { email = it },

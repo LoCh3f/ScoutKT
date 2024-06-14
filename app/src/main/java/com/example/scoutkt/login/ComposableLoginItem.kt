@@ -48,7 +48,7 @@ fun LoginPage(
 
         Image(modifier = Modifier.clip(CircleShape),
             painter = painterResource(id = R.drawable.main_logo), // Sostituisci con il tuo ID risorsa
-            contentDescription = "Google Logo",
+            contentDescription = "App Logo",
         )
         Spacer(modifier = Modifier.height(16.dp))
 
