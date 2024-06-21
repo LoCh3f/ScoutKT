@@ -1,9 +1,6 @@
-package com.example.scoutkt.data.remote
+package com.example.scoutkt.data.remote.crypto
 
-import android.health.connect.datatypes.units.Percentage
-import android.health.connect.datatypes.units.Volume
 import kotlinx.serialization.Serializable
-import kotlin.time.Duration
 
 @Serializable
 data class USD(

@@ -1,4 +1,4 @@
-package com.example.scoutkt.data.remote
+package com.example.scoutkt.data.remote.crypto
 
 import kotlinx.serialization.Serializable
 
