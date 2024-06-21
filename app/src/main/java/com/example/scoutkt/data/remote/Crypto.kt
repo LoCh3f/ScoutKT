@@ -1,7 +1,8 @@
 package com.example.scoutkt.data.remote
 
-import yahoofinance.quotes.fx.FxSymbols
+import kotlinx.serialization.Serializable
 
+@Serializable
 data class Crypto(
     var id: Int,
     var name: String,
@@ -17,7 +18,7 @@ data class Crypto(
     var cmc_rank: Int,
     var self_reported_circulating_supply: Int?,
     var self_repoted_market_cap: Int?,
-    var tvl_ratio: Int?,
+    var tvl_ratio: Float?,
     var last_update: String,
     var quote: Quote
     )
