@@ -1,5 +1,11 @@
 package com.example.scoutkt.registration
 
+import android.content.ContentValues.TAG
+import android.content.Context
+import android.util.Log
+import android.widget.Toast
+import androidx.activity.result.ActivityResult
+import androidx.activity.result.ActivityResultLauncher
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -17,7 +23,6 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -31,9 +36,10 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.scoutkt.R
 import com.example.scoutkt.data.preferences.UserPreferences
+import com.google.firebase.auth.FirebaseAuth
 
 @Composable
-fun RegistrationScreen(userPreferences: UserPreferences,OnRegister: () -> Unit) {
+fun RegistrationScreen(context: Context,userPreferences: UserPreferences, onRegister: () -> Unit, auth: FirebaseAuth?) {
     var username by remember { mutableStateOf("") }
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
@@ -78,7 +84,7 @@ fun RegistrationScreen(userPreferences: UserPreferences,OnRegister: () -> Unit) 
         Button(
             onClick = {
               userPreferences.saveUser(username, email, password)
-              OnRegister()
+              onRegister()
             },
             modifier = Modifier.fillMaxWidth()
         ) {
@@ -86,9 +92,11 @@ fun RegistrationScreen(userPreferences: UserPreferences,OnRegister: () -> Unit) 
         }
         Spacer(modifier = Modifier.height(16.dp))
         GoogleAccountButton {
-
+            if (auth != null) {
+                auth.createUserWithEmailAndPassword(email, password)
+                userPreferences.saveUser(username, email, password)
+            }
         }
-
     }
 }
 

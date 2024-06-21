@@ -6,22 +6,38 @@ import androidx.activity.compose.setContent
 import com.example.scoutkt.MainActivity
 import com.example.scoutkt.data.preferences.UserPreferences
 import com.example.scoutkt.ui.theme.ScoutKTTheme
+import com.google.firebase.FirebaseApp
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 
 class RegistrationActivity : ComponentActivity() {
-    lateinit var userPreferences: UserPreferences
+    private lateinit var userPreferences: UserPreferences
+   // private lateinit var auth: FirebaseAuth
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+
+        //auth = Firebase.auth
+
+
+
         userPreferences = UserPreferences(context = this)
         setContent {
             ScoutKTTheme {
-                RegistrationScreen(userPreferences, OnRegister = {
+                RegistrationScreen(this,userPreferences,
+                    onRegister = {
                     val intent = Intent(this, MainActivity::class.java)
                     startActivity(intent)
-                })
+                },
+                    auth = null)
             }
 
         }
     }
+
+
+
 }
 
 

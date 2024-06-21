@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "410581686904",
+    "project_id": "scoutkts-fd980",
+    "storage_bucket": "scoutkts-fd980.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:410581686904:android:3f1f638193a60101d22b8d",
+        "android_client_info": {
+          "package_name": "com.example.scoutkt"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "410581686904-rv9sllg0i1gb9kli45gjsqh5nhc2lh69.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCcUx7rwoLz7rl6Iu08156QJ7_AYj0xMzc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "410581686904-rv9sllg0i1gb9kli45gjsqh5nhc2lh69.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
