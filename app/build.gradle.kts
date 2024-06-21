@@ -1,9 +1,11 @@
+import org.jetbrains.kotlin.gradle.targets.js.nodejs.NodeJsRootPlugin.Companion.kotlinNodeJsExtension
 import kotlin.script.experimental.jvm.util.classpathFromClass
 
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
     alias(libs.plugins.gms)
+    kotlin("plugin.serialization") version "1.9.0"
 }
 
 android {
@@ -70,6 +72,10 @@ dependencies {
     implementation(libs.firebase.auth)
     implementation(libs.room)
     implementation(libs.coroutines)
+    implementation(libs.io.ktor)
+    implementation(libs.io.ktor.content)
+    implementation(libs.io.ktor.okhttp)
+    implementation(libs.io.ktor.serialization)
     annotationProcessor(libs.room.compiler)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

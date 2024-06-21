@@ -39,6 +39,10 @@ room = { group = "androidx.room", name = "room-runtime", version = "2.6.1"}
 room-compiler = { group = "androidx.room", name = "room-compiler", version = "2.6.1"}
 coroutines = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-android", version = "1.7.3"}
 gms = {group = "com.google.android.gms", name = "play-services-auth", version = "21.2.0"}
+io-ktor = {group = "io.ktor", name = "ktor-client-core",version = "2.3.8"}
+io-ktor-okhttp = {group = "io.ktor", name = "ktor-client-okhttp", version = "2.3.8"}
+io-ktor-content = { group = "io.ktor", name = "ktor-client-content-negotiation", version = "2.3.8" }
+io-ktor-serialization = { group = "io.ktor", name = "ktor-serialization-kotlinx-json",version = "2.3.8"}
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
