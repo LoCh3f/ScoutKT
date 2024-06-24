@@ -16,16 +16,13 @@ fun ComposeNavigation(currentUser: CurrentUser, marketPreferences: MarketPrefere
     val  navController = rememberNavController()
     NavHost(navController = navController, startDestination = "Home" ) {
         composable("Home") {
-            ScaffoldLayout(activityName = "Home", id = R.drawable.baseline_home_24,navController)
+            ScaffoldLayout(activityName = "Home", id = R.drawable.baseline_home_24,navController,currentUser,marketPreferences)
         }
         composable("Favorites") {
-            ScaffoldLayout(activityName = "Favorites", id = R.drawable.baseline_assistant_24,navController)
-        }
-        composable("Alarms") {
-            ScaffoldLayout(activityName = "Alarms", id = R.drawable.baseline_alarm_24,navController)
+            ScaffoldLayout(activityName = "Favorites", id = R.drawable.baseline_assistant_24,navController,currentUser,marketPreferences)
         }
         composable("Settings"){
-            ScaffoldLayout(activityName = "Settings", id =R.drawable.baseline_app_settings_alt_24,navController )
+            ScaffoldLayout(activityName = "Settings", id =R.drawable.baseline_app_settings_alt_24,navController, currentUser,marketPreferences)
 
         }
 
