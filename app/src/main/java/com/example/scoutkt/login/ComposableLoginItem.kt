@@ -23,12 +23,14 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.sp
 import com.example.scoutkt.R
+import com.example.scoutkt.data.preferences.CurrentUser
 
 import com.example.scoutkt.data.preferences.UserPreferences
 
 @Composable
 fun LoginPage(
     userPreferences: UserPreferences,
+    currentUser: CurrentUser,
     onLoginSuccess: () -> Unit,
     onRegisterClicked: () -> Unit
 ) {
@@ -92,7 +94,9 @@ fun LoginPage(
                 if (email.isNotBlank() && password.isNotBlank()) {
                     val (savedEmail, savedPassword) = userPreferences.getUser()
                     if (email == savedEmail && password == savedPassword) {
+                        currentUser.setCurrentUser(email)
                         onLoginSuccess() // Login corretto
+
                     } else {
                         // Credenziali errate
                         emailError = "Invalid email or password"
