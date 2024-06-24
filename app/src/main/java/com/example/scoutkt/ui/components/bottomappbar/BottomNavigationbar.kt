@@ -1,4 +1,4 @@
-package com.example.scoutkt.ui.components
+package com.example.scoutkt.ui.components.bottomappbar
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
@@ -35,9 +35,6 @@ fun SimpleNavigationBar(navController: NavController) {
 
             Button(onClick = { navController.navigate("Home") }, modifier = Modifier.padding(5.dp)) {
                 Image(painter = painterResource(R.drawable.baseline_home_24), contentDescription = "")
-            }
-            Button(onClick = { navController.navigate("Alarms") },modifier = Modifier.padding(5.dp)) {
-                Image(painter = painterResource(R.drawable.baseline_alarm_24), contentDescription ="" )
             }
             Button(onClick = { navController.navigate("Favorites") }, modifier = Modifier.padding(5.dp)) {
                 Image(painter = painterResource(R.drawable.baseline_assistant_24), contentDescription ="" )
