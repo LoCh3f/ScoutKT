@@ -4,19 +4,19 @@ import android.content.Context
 import android.content.SharedPreferences
 
 class CurrentUser(context: Context) {
-    private val sharedPreferences: SharedPreferences = context.getSharedPreferences("currente_user", Context.MODE_PRIVATE)
+    private val sharedPreferences: SharedPreferences = context.getSharedPreferences("current_user", Context.MODE_PRIVATE)
 
-    fun setCurrentUser(username: String) {
+    fun setCurrentUser(email: String) {
         val editor =  sharedPreferences.edit()
-        editor.putString("username",username)
+        editor.putString("email",email)
         editor.apply()
     }
 
     fun getCurrentUser(): String? {
-        return sharedPreferences.getString("username",null)
+        return sharedPreferences.getString("email",null)
     }
 
     fun removeCurrentUser() {
-        sharedPreferences.edit().remove(sharedPreferences.getString("username",null)).apply()
+        sharedPreferences.edit().remove(sharedPreferences.getString("email",null)).apply()
     }
 }

@@ -35,11 +35,12 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.scoutkt.R
+import com.example.scoutkt.data.preferences.CurrentUser
 import com.example.scoutkt.data.preferences.UserPreferences
 import com.google.firebase.auth.FirebaseAuth
 
 @Composable
-fun RegistrationScreen(context: Context,userPreferences: UserPreferences, onRegister: () -> Unit, auth: FirebaseAuth?) {
+fun RegistrationScreen(userPreferences: UserPreferences, currentUser: CurrentUser, onRegister: () -> Unit) {
     var username by remember { mutableStateOf("") }
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
@@ -84,6 +85,7 @@ fun RegistrationScreen(context: Context,userPreferences: UserPreferences, onRegi
         Button(
             onClick = {
               userPreferences.saveUser(username, email, password)
+                currentUser.setCurrentUser(email)
               onRegister()
             },
             modifier = Modifier.fillMaxWidth()
@@ -91,12 +93,7 @@ fun RegistrationScreen(context: Context,userPreferences: UserPreferences, onRegi
             Text("Register")
         }
         Spacer(modifier = Modifier.height(16.dp))
-        GoogleAccountButton {
-            if (auth != null) {
-                auth.createUserWithEmailAndPassword(email, password)
-                userPreferences.saveUser(username, email, password)
-            }
-        }
+
     }
 }
 
