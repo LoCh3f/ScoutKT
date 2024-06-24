@@ -71,6 +71,7 @@ dependencies {
     implementation(libs.firebase.analytics)
     implementation(libs.firebase.auth)
     implementation(libs.room)
+    implementation(libs.gson)
     implementation(libs.coroutines)
     implementation(libs.io.ktor.core)
     implementation(libs.io.ktor.logging)

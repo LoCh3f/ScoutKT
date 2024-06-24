@@ -16,5 +16,7 @@ import androidx.compose.ui.unit.dp
 fun AppHeader(activityName: String,@DrawableRes id: Int) {
     TopAppBar(title = { Text(activityName) },
         modifier = Modifier.padding(10.dp),
-        navigationIcon = { Image(painter = painterResource(id), contentDescription = "") })
+        navigationIcon = { Image(painter = painterResource(id), contentDescription = "")
+        }
+    )
 }

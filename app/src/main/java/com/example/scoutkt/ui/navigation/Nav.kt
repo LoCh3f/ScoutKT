@@ -1,4 +1,4 @@
-package com.example.scoutkt.navigation
+package com.example.scoutkt.ui.navigation
 
 import androidx.compose.runtime.Composable
 
