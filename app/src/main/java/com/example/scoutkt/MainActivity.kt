@@ -5,9 +5,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import com.example.scoutkt.ui.navigation.ComposeNavigation
-import com.example.scoutkt.ui.components.ScaffoldLayout
-import com.example.scoutkt.ui.components.StockCard
-import com.example.scoutkt.ui.components.StockName
+
 import com.example.scoutkt.ui.theme.ScoutKTTheme
 
 class MainActivity : ComponentActivity() {
