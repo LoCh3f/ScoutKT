@@ -1,3 +1,5 @@
+package com.example.scoutkt.data.preferences
+
 import android.content.Context
 import android.content.SharedPreferences
 import com.google.common.reflect.TypeToken
