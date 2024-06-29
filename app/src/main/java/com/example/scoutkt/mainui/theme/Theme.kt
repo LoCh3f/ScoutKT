@@ -1,4 +1,4 @@
-package com.example.scoutkt.ui.theme
+package com.example.scoutkt.mainui.theme
 import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.darkColorScheme

@@ -1,4 +1,4 @@
-package com.example.scoutkt.ui.navigation
+package com.example.scoutkt.mainui.navigation
 
 import androidx.compose.runtime.Composable
 
@@ -8,7 +8,7 @@ import androidx.navigation.compose.rememberNavController
 import com.example.scoutkt.R
 import com.example.scoutkt.data.preferences.CurrentUser
 import com.example.scoutkt.data.preferences.MarketPreferences
-import com.example.scoutkt.ui.components.ScaffoldLayout
+import com.example.scoutkt.mainui.components.ScaffoldLayout
 
 
 @Composable

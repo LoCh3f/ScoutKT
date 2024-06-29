@@ -1,4 +1,4 @@
-package com.example.scoutkt.ui.components.home
+package com.example.scoutkt.mainui.components.home
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -11,7 +11,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.example.scoutkt.ui.components.StockCard
+import com.example.scoutkt.mainui.components.StockCard
 
 @Composable
 fun ScrollingStock(innerPadding: PaddingValues) {

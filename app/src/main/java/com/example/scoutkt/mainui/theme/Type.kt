@@ -1,4 +1,4 @@
-package com.example.scoutkt.ui.theme
+package com.example.scoutkt.mainui.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle

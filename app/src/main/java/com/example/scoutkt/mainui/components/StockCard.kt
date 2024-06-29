@@ -1,4 +1,4 @@
-package com.example.scoutkt.ui.components
+package com.example.scoutkt.mainui.components
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.Image

@@ -6,11 +6,7 @@ import androidx.activity.compose.setContent
 import com.example.scoutkt.MainActivity
 import com.example.scoutkt.data.preferences.CurrentUser
 import com.example.scoutkt.data.preferences.UserPreferences
-import com.example.scoutkt.ui.theme.ScoutKTTheme
-import com.google.firebase.FirebaseApp
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.ktx.Firebase
+import com.example.scoutkt.mainui.theme.ScoutKTTheme
 
 class RegistrationActivity : ComponentActivity() {
     private lateinit var userPreferences: UserPreferences

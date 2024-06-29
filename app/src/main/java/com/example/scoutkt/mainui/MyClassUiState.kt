@@ -1,3 +1,3 @@
-package com.example.scoutkt.ui
+package com.example.scoutkt.mainui
 
 data class MyClassUiState (val currentValue:String="")

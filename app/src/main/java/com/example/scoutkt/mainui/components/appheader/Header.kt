@@ -1,4 +1,4 @@
-package com.example.scoutkt.ui.components.appheader
+package com.example.scoutkt.mainui.components.appheader
 
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.Image

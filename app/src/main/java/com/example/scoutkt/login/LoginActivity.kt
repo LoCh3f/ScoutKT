@@ -8,7 +8,7 @@ import com.example.scoutkt.data.preferences.UserPreferences
 import com.example.scoutkt.MainActivity
 import com.example.scoutkt.data.preferences.CurrentUser
 import com.example.scoutkt.registration.RegistrationActivity
-import com.example.scoutkt.ui.theme.ScoutKTTheme
+import com.example.scoutkt.mainui.theme.ScoutKTTheme
 
 class LoginActivity : ComponentActivity() {
     private lateinit var userPreferences: UserPreferences

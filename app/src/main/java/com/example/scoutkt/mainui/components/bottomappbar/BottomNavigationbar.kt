@@ -1,4 +1,4 @@
-package com.example.scoutkt.ui.components.bottomappbar
+package com.example.scoutkt.mainui.components.bottomappbar
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement

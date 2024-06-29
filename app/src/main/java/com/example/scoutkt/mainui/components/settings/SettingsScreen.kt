@@ -1,4 +1,4 @@
-package com.example.scoutkt.ui.components.settings
+package com.example.scoutkt.mainui.components.settings
 
 import android.net.Uri
 import androidx.activity.compose.rememberLauncherForActivityResult
@@ -14,7 +14,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import coil.compose.rememberAsyncImagePainter
-import coil.compose.rememberImagePainter
 import com.example.scoutkt.R
 
 @Composable

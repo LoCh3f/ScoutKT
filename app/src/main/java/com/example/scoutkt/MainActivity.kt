@@ -6,9 +6,9 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import com.example.scoutkt.data.preferences.CurrentUser
 import com.example.scoutkt.data.preferences.MarketPreferences
-import com.example.scoutkt.ui.navigation.ComposeNavigation
+import com.example.scoutkt.mainui.navigation.ComposeNavigation
 
-import com.example.scoutkt.ui.theme.ScoutKTTheme
+import com.example.scoutkt.mainui.theme.ScoutKTTheme
 
 class MainActivity : ComponentActivity() {
     private lateinit var currentUser: CurrentUser
