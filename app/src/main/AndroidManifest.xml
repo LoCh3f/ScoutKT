@@ -48,7 +48,6 @@
             android:theme="@style/Theme.ScoutKT">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
             </intent-filter>
         </activity>
         <activity
