@@ -6,13 +6,16 @@ import android.widget.Toast
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
@@ -96,14 +99,19 @@ fun SettingsScreen(
                 .size(100.dp)
                 .padding(16.dp)
                 .align(Alignment.CenterHorizontally)
+                .clip(CircleShape)
+                .border(2.dp, Color.Gray, CircleShape)
                 .clickable { showDialog = true } // Show dialog on image click
+
+
         ) {
-            if (profileImageUri != null) {
-                Image(
-                    painter = painter!!,
-                    contentDescription = null,
-                    modifier = Modifier.fillMaxSize(),
-                    contentScale = contentScale // Set content scale
+            if (cameraLauncher.capturedImageUri.path?.isNotEmpty() == true) {
+                AsyncImage(
+                    ImageRequest.Builder(ctx)
+                        .data(cameraLauncher.capturedImageUri)
+                        .crossfade(true)
+                        .build(),
+                    "Captured image"
                 )
             } else {
                 Image(
@@ -114,15 +122,7 @@ fun SettingsScreen(
                 )
             }
         }
-        if (cameraLauncher.capturedImageUri.path?.isNotEmpty() == true) {
-            AsyncImage(
-                ImageRequest.Builder(ctx)
-                    .data(cameraLauncher.capturedImageUri)
-                    .crossfade(true)
-                    .build(),
-                "Captured image"
-            )
-        }
+
 
         // Content Scale Switch
         Row(
