@@ -1,4 +1,4 @@
-package com.example.scoutkt.utils.permission
+package com.example.scoutkt.util.permission
 
 enum class Permission {
     Unknown,

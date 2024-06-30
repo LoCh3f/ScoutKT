@@ -1,5 +1,6 @@
 package com.example.scoutkt.mainui.components.settings
 
+import android.Manifest
 import android.net.Uri
 import android.widget.Toast
 import androidx.activity.compose.rememberLauncherForActivityResult
@@ -14,12 +15,15 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import coil.compose.AsyncImage
 import coil.compose.rememberAsyncImagePainter
+import coil.request.ImageRequest
 import com.example.scoutkt.R
-import com.example.scoutkt.utils.permission.rememberPermission
-import java.util.jar.Manifest
+import com.example.scoutkt.util.camera.rememberCameraLauncher
+import com.example.scoutkt.util.permission.rememberPermission
 
 @Composable
 fun SettingsScreen(
@@ -33,13 +37,24 @@ fun SettingsScreen(
     // Usiamo rememberAsyncImagePainter solo quando profileImageUri non è null
     val painter = profileImageUri?.let { rememberAsyncImagePainter(it) }
 
-    val launcherTakePicture = rememberLauncherForActivityResult(ActivityResultContracts.TakePicturePreview()) { bitmap ->
-        if (bitmap != null) {
-            // Handle the taken picture (Bitmap)
-            // Here you should save the bitmap to a file and then set profileImageUri to the Uri of that file.
-            profileImageUri = null // Resetting to null to signify a direct Bitmap, not Uri.
+    val ctx = LocalContext.current
+
+    val cameraLauncher = rememberCameraLauncher()
+
+    val cameraPermission = rememberPermission(Manifest.permission.CAMERA) { status ->
+        if (status.isGranted) {
+            cameraLauncher.captureImage()
+        } else {
+            Toast.makeText(ctx, "Permission denied", Toast.LENGTH_SHORT).show()
         }
     }
+
+    fun takePicture() =
+        if (cameraPermission.status.isGranted) {
+            cameraLauncher.captureImage()
+        } else {
+            cameraPermission.launchPermissionRequest()
+        }
 
     val launcherPickImage = rememberLauncherForActivityResult(ActivityResultContracts.GetContent()) { uri ->
         if (uri != null) {
@@ -54,9 +69,7 @@ fun SettingsScreen(
             text = { Text("Vuoi scattare una foto o scegliere dalla galleria?") },
             confirmButton = {
                 TextButton(onClick = {
-
-                    launcherTakePicture.launch(null)
-                    showDialog = false
+                    takePicture()
                 }) {
                     Text("Scatta Foto")
                 }
@@ -100,6 +113,15 @@ fun SettingsScreen(
                     contentScale = contentScale // Set content scale
                 )
             }
+        }
+        if (cameraLauncher.capturedImageUri.path?.isNotEmpty() == true) {
+            AsyncImage(
+                ImageRequest.Builder(ctx)
+                    .data(cameraLauncher.capturedImageUri)
+                    .crossfade(true)
+                    .build(),
+                "Captured image"
+            )
         }
 
         // Content Scale Switch
