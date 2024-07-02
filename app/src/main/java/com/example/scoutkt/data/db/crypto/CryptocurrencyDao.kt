@@ -18,4 +18,7 @@ interface CryptocurrencyDao {
 
     @Query("DELETE FROM cryptocurrencies")
     suspend fun deleteAllCryptocurrencies()
+
+    @Query("SELECT * FROM cryptocurrencies WHERE name IN (:cryptoNames)")
+    suspend fun getCryptocurrenciesByName(cryptoNames: List<String>): List<Cryptocurrency>
 }
