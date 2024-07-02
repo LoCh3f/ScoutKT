@@ -2,23 +2,48 @@ package com.example.scoutkt.data.preferences
 
 import android.content.Context
 import android.content.SharedPreferences
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 
 class UserPreferences(context: Context) {
 
     private val sharedPreferences: SharedPreferences =
         context.getSharedPreferences("user_prefs", Context.MODE_PRIVATE)
 
-    fun saveUser(username: String, email: String, password: String) {
+    private val gson = Gson()
+
+    private fun getUsers(): MutableList<User> {
+        val usersJson = sharedPreferences.getString("users", null)
+        return if (usersJson != null) {
+            val type = object : TypeToken<MutableList<User>>() {}.type
+            gson.fromJson(usersJson, type)
+        } else {
+            mutableListOf()
+        }
+    }
+
+    private fun saveUsers(users: List<User>) {
         val editor = sharedPreferences.edit()
-        editor.putString("username", username)
-        editor.putString("email",email)
-        editor.putString("password", password)
+        val usersJson = gson.toJson(users)
+        editor.putString("users", usersJson)
         editor.apply()
     }
 
-    fun getUser(): Pair<String?, String?> {
-        val email = sharedPreferences.getString("email", null)
-        val password = sharedPreferences.getString("password", null)
-        return Pair(email, password)
+    fun saveUser(username: String, email: String, password: String, profileImagePath: String? = null) {
+        val users = getUsers()
+        users.removeAll { it.username == username }
+        users.add(User(username, email, password, profileImagePath))
+        saveUsers(users)
+    }
+
+    fun getUser(username: String): User? {
+        val users = getUsers()
+        return users.find { it.username == username }
+    }
+
+    fun removeUser(username: String) {
+        val users = getUsers()
+        users.removeAll { it.username == username }
+        saveUsers(users)
     }
 }
