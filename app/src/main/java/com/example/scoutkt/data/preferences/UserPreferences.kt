@@ -2,7 +2,6 @@ package com.example.scoutkt.data.preferences
 
 import android.content.Context
 import android.content.SharedPreferences
-import android.provider.ContactsContract.CommonDataKinds.Email
 
 class UserPreferences(context: Context) {
 
