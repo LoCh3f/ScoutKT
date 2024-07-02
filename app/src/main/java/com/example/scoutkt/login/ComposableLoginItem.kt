@@ -92,8 +92,7 @@ fun LoginPage(
         Button(
             onClick = {
                 if (email.isNotBlank() && password.isNotBlank()) {
-                    val (savedEmail, savedPassword) = userPreferences.getUser()
-                    if (email == savedEmail && password == savedPassword) {
+                    if (userPreferences.authUser(email,password)) {
                         currentUser.setCurrentUser(email)
                         onLoginSuccess() // Login corretto
 

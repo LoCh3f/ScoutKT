@@ -41,6 +41,10 @@ class UserPreferences(context: Context) {
         return users.find { it.username == username }
     }
 
+    fun authUser(email: String, password: String): Boolean {
+        return getUsers().stream().anyMatch { user -> user.email ==email && user.password == password }
+    }
+
     fun removeUser(username: String) {
         val users = getUsers()
         users.removeAll { it.username == username }
