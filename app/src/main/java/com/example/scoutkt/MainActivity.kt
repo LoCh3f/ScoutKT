@@ -1,5 +1,6 @@
 package com.example.scoutkt
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -7,6 +8,7 @@ import androidx.activity.enableEdgeToEdge
 import com.example.scoutkt.data.preferences.CurrentUser
 import com.example.scoutkt.data.preferences.MarketPreferences
 import com.example.scoutkt.data.preferences.UserPreferences
+import com.example.scoutkt.login.LoginActivity
 import com.example.scoutkt.mainui.navigation.ComposeNavigation
 
 import com.example.scoutkt.mainui.theme.ScoutKTTheme
@@ -23,7 +25,13 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             ScoutKTTheme {
-                ComposeNavigation(currentUser,marketPreferences,userPreferences)
+                ComposeNavigation(currentUser,marketPreferences,userPreferences,
+                    onLogOutClick = {
+                        val intent = Intent(this, LoginActivity::class.java)
+                        startActivity(intent)
+                        currentUser.setCurrentUser()
+                    }
+                )
             }
         }
     }

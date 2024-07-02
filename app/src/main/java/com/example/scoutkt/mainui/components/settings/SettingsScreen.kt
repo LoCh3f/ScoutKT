@@ -131,30 +131,7 @@ fun SettingsScreen(
                 )
             }
         }
-
-
-
-
-        // Dark Theme Switch
-        val value = isSystemInDarkTheme()
-        var isDarkTheme by remember { mutableStateOf(value) }
-
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(vertical = 8.dp),
-            horizontalArrangement = Arrangement.SpaceBetween,
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            Text(text = "Tema Scuro", style = MaterialTheme.typography.bodyLarge)
-            Switch(
-                checked = isDarkTheme,
-                onCheckedChange = { isDarkTheme = it }
-            )
-        }
-
         Spacer(modifier = Modifier.weight(1f))
-
         // Logout Button
         Button(
             onClick = onLogoutClick,

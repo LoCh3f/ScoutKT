@@ -6,7 +6,7 @@ import android.content.SharedPreferences
 class CurrentUser(context: Context) {
     private val sharedPreferences: SharedPreferences = context.getSharedPreferences("current_user", Context.MODE_PRIVATE)
 
-    fun setCurrentUser(email: String) {
+    fun setCurrentUser(email: String? = null) {
         val editor =  sharedPreferences.edit()
         editor.putString("email",email)
         editor.apply()
