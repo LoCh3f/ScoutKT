@@ -25,13 +25,17 @@ import coil.compose.AsyncImage
 import coil.compose.rememberAsyncImagePainter
 import coil.request.ImageRequest
 import com.example.scoutkt.R
+import com.example.scoutkt.data.preferences.CurrentUser
+import com.example.scoutkt.data.preferences.UserPreferences
 import com.example.scoutkt.util.camera.rememberCameraLauncher
 import com.example.scoutkt.util.permission.rememberPermission
 
 @Composable
 fun SettingsScreen(
     onLogoutClick: () -> Unit,
-    innerPadding: PaddingValues
+    innerPadding: PaddingValues,
+    userPreferences: UserPreferences,
+    currentUser: CurrentUser
 ) {
     var profileImageUri by remember { mutableStateOf<Uri?>(null) }
     var showDialog by remember { mutableStateOf(false) }
