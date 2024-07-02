@@ -8,11 +8,12 @@ import androidx.navigation.compose.rememberNavController
 import com.example.scoutkt.R
 import com.example.scoutkt.data.preferences.CurrentUser
 import com.example.scoutkt.data.preferences.MarketPreferences
+import com.example.scoutkt.data.preferences.UserPreferences
 import com.example.scoutkt.mainui.components.ScaffoldLayout
 
 
 @Composable
-fun ComposeNavigation(currentUser: CurrentUser, marketPreferences: MarketPreferences) {
+fun ComposeNavigation(currentUser: CurrentUser, marketPreferences: MarketPreferences, userPreferences: UserPreferences) {
     val  navController = rememberNavController()
     NavHost(navController = navController, startDestination = "Home" ) {
         composable("Home") {
