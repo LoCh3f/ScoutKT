@@ -36,18 +36,26 @@ class UserPreferences(context: Context) {
         saveUsers(users)
     }
 
-    fun getUser(username: String): User? {
+    fun getUser(email: String): User? {
         val users = getUsers()
-        return users.find { it.username == username }
+        return users.find { it.email == email }
     }
 
     fun authUser(email: String, password: String): Boolean {
         return getUsers().stream().anyMatch { user -> user.email ==email && user.password == password }
     }
 
-    fun removeUser(username: String) {
+    fun removeUser(email: String) {
         val users = getUsers()
-        users.removeAll { it.username == username }
+        users.removeAll { it.email == email }
         saveUsers(users)
+    }
+
+    fun saveImage(email: String, profileImagePath: String) {
+        val user = getUser(email)
+        if (user != null) {
+            user.profileImagePath = profileImagePath
+        }
+
     }
 }

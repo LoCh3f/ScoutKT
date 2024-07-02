@@ -21,6 +21,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import androidx.core.net.toUri
 import coil.compose.AsyncImage
 import coil.compose.rememberAsyncImagePainter
 import coil.request.ImageRequest
@@ -109,14 +110,42 @@ fun SettingsScreen(
 
 
         ) {
-            if (cameraLauncher.capturedImageUri.path?.isNotEmpty() == true) {
+
+            if (profileImageUri != null) {
+                AsyncImage(
+                    ImageRequest.Builder(ctx)
+                        .data(profileImageUri)
+                        .crossfade(true)
+                        .build(),
+                    "Selected image",
+                    modifier = Modifier.fillMaxSize(),
+                    contentScale = ContentScale.Crop
+                )
+                currentUser.getCurrentUser()
+                    ?.let { userPreferences.saveImage(it,profileImageUri.toString()) }
+            }
+            else if (cameraLauncher.capturedImageUri.path?.isNotEmpty() == true) {
                 AsyncImage(
                     ImageRequest.Builder(ctx)
                         .data(cameraLauncher.capturedImageUri)
                         .crossfade(true)
                         .build(),
-                    "Captured image"
+                    "Captured image",
+                    modifier = Modifier.fillMaxSize(),
+                    contentScale = ContentScale.Crop
                 )
+                currentUser.getCurrentUser()
+                    ?.let { userPreferences.saveImage(it,cameraLauncher.capturedImageUri.toString()) }
+            } else if (currentUser.getCurrentUser()?.let { userPreferences.getUser(it)?.profileImagePath } != null) {
+            AsyncImage(
+                ImageRequest.Builder(ctx)
+                    .data(userPreferences.getUser(currentUser.getCurrentUser()!!)?.profileImagePath?.toUri())
+                    .crossfade(true)
+                    .build(),
+                "Captured image",
+                modifier = Modifier.fillMaxSize(),
+                contentScale = ContentScale.Crop
+            )
             } else {
                 Image(
                     painter = painterResource(id = R.drawable.droid_head), // Placeholder image in your resources

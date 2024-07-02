@@ -19,6 +19,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         currentUser = CurrentUser(context = this)
         marketPreferences = MarketPreferences(context = this)
+        userPreferences = UserPreferences(context = this)
         enableEdgeToEdge()
         setContent {
             ScoutKTTheme {

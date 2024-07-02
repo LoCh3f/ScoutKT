@@ -4,5 +4,5 @@ data class User(
     val username: String,
     val email: String,
     val password: String,
-    val profileImagePath: String? = null
+    var profileImagePath: String? = null
 )
