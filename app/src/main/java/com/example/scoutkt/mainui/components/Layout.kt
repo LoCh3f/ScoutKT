@@ -8,13 +8,14 @@ import androidx.navigation.NavController
 import com.example.scoutkt.R
 import com.example.scoutkt.data.preferences.CurrentUser
 import com.example.scoutkt.data.preferences.MarketPreferences
+import com.example.scoutkt.data.preferences.UserPreferences
 import com.example.scoutkt.mainui.components.appheader.AppHeader
 import com.example.scoutkt.mainui.components.bottomappbar.SimpleNavigationBar
 import com.example.scoutkt.mainui.components.home.ScrollingStock
 import com.example.scoutkt.mainui.components.settings.SettingsScreen
 
 @Composable
-fun ScaffoldLayout(activityName: String, @DrawableRes id: Int,navController: NavController,currentUser: CurrentUser,marketPreferences: MarketPreferences) {
+fun ScaffoldLayout(activityName: String, @DrawableRes id: Int,navController: NavController,currentUser: CurrentUser,marketPreferences: MarketPreferences, userPreferences: UserPreferences) {
     if (id == R.drawable.baseline_home_24) {
         Scaffold(modifier = Modifier,
             topBar = { AppHeader(activityName = activityName, id = id)},
