@@ -2,6 +2,8 @@ package com.example.scoutkt.data.preferences
 
 import android.content.Context
 import android.content.SharedPreferences
+import android.net.Uri
+import androidx.core.net.toUri
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 
@@ -52,10 +54,15 @@ class UserPreferences(context: Context) {
     }
 
     fun saveImage(email: String, profileImagePath: String) {
-        val user = getUser(email)
-        if (user != null) {
-            user.profileImagePath = profileImagePath
+        val users = getUsers()
+        val userIndex = users.indexOfFirst { it.email == email }
+        if (userIndex != -1) {
+            users[userIndex].profileImagePath = profileImagePath
+            saveUsers(users) // Salva gli utenti aggiornati nella SharedPreferences
         }
+    }
 
+    fun getImageUri(email: String): Uri? {
+        return getUser(email)?.profileImagePath?.toUri()
     }
 }

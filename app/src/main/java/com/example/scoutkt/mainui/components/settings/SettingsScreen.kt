@@ -2,6 +2,7 @@ package com.example.scoutkt.mainui.components.settings
 
 import android.Manifest
 import android.net.Uri
+import android.util.Log
 import android.widget.Toast
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
@@ -38,13 +39,10 @@ fun SettingsScreen(
     userPreferences: UserPreferences,
     currentUser: CurrentUser
 ) {
-    var profileImageUri by remember { mutableStateOf<Uri?>(null) }
+    var profileImageUri by remember { mutableStateOf<Uri?>(currentUser.getCurrentUser()
+        ?.let { userPreferences.getImageUri(it) }) }
     var showDialog by remember { mutableStateOf(false) }
     var contentScale by remember { mutableStateOf(ContentScale.Crop) } // State for content scale
-
-    // Usiamo rememberAsyncImagePainter solo quando profileImageUri non è null
-    val painter = profileImageUri?.let { rememberAsyncImagePainter(it) }
-
     val ctx = LocalContext.current
 
     val cameraLauncher = rememberCameraLauncher()
@@ -111,7 +109,7 @@ fun SettingsScreen(
 
         ) {
 
-            if (profileImageUri != null) {
+             if (profileImageUri != null) {
                 AsyncImage(
                     ImageRequest.Builder(ctx)
                         .data(profileImageUri)
@@ -124,29 +122,7 @@ fun SettingsScreen(
                 currentUser.getCurrentUser()
                     ?.let { userPreferences.saveImage(it,profileImageUri.toString()) }
             }
-            else if (cameraLauncher.capturedImageUri.path?.isNotEmpty() == true) {
-                AsyncImage(
-                    ImageRequest.Builder(ctx)
-                        .data(cameraLauncher.capturedImageUri)
-                        .crossfade(true)
-                        .build(),
-                    "Captured image",
-                    modifier = Modifier.fillMaxSize(),
-                    contentScale = ContentScale.Crop
-                )
-                currentUser.getCurrentUser()
-                    ?.let { userPreferences.saveImage(it,cameraLauncher.capturedImageUri.toString()) }
-            } else if (currentUser.getCurrentUser()?.let { userPreferences.getUser(it)?.profileImagePath } != null) {
-            AsyncImage(
-                ImageRequest.Builder(ctx)
-                    .data(userPreferences.getUser(currentUser.getCurrentUser()!!)?.profileImagePath?.toUri())
-                    .crossfade(true)
-                    .build(),
-                "Captured image",
-                modifier = Modifier.fillMaxSize(),
-                contentScale = ContentScale.Crop
-            )
-            } else {
+             else {
                 Image(
                     painter = painterResource(id = R.drawable.droid_head), // Placeholder image in your resources
                     contentDescription = null,
@@ -157,22 +133,7 @@ fun SettingsScreen(
         }
 
 
-        // Content Scale Switch
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(vertical = 8.dp),
-            horizontalArrangement = Arrangement.SpaceEvenly,
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            Text("Adatta Immagine", style = MaterialTheme.typography.bodyLarge)
-            Switch(
-                checked = contentScale == ContentScale.Fit,
-                onCheckedChange = {
-                    contentScale = if (it) ContentScale.Fit else ContentScale.Crop
-                }
-            )
-        }
+
 
         // Dark Theme Switch
         val value = isSystemInDarkTheme()
