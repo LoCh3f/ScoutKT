@@ -33,19 +33,19 @@ class CryptoRepository(
                     selfReportedMarketCap = crypto.selfReportedMarketCap,
                     tvlRatio = crypto.tvlRatio,
                     lastUpdated = crypto.lastUpdated,
-                    price = crypto.quote["USD"]?.price,
-                    volume24h = crypto.quote["USD"]?.volume24h,
-                    volumeChange24h = crypto.quote["USD"]?.volumeChange24h,
-                    percentChange1h = crypto.quote["USD"]?.percentChange1h,
-                    percentChange24h = crypto.quote["USD"]?.percentChange24h,
-                    percentChange7d = crypto.quote["USD"]?.percentChange7d,
-                    percentChange30d = crypto.quote["USD"]?.percentChange30d,
-                    percentChange60d = crypto.quote["USD"]?.percentChange60d,
-                    percentChange90d = crypto.quote["USD"]?.percentChange90d,
-                    marketCap = crypto.quote["USD"]?.marketCap,
-                    marketCapDominance = crypto.quote["USD"]?.marketCapDominance,
-                    fullyDilutedMarketCap = crypto.quote["USD"]?.fullyDilutedMarketCap,
-                    tvl = crypto.quote["USD"]?.tvl
+                    price = crypto.quote?.get("USD")?.price,
+                    volume24h = crypto.quote?.get("USD")?.volume24h,
+                    volumeChange24h = crypto.quote?.get("USD")?.volumeChange24h,
+                    percentChange1h = crypto.quote?.get("USD")?.percentChange1h,
+                    percentChange24h = crypto.quote?.get("USD")?.percentChange24h,
+                    percentChange7d = crypto.quote?.get("USD")?.percentChange7d,
+                    percentChange30d = crypto.quote?.get("USD")?.percentChange30d,
+                    percentChange60d = crypto.quote?.get("USD")?.percentChange60d,
+                    percentChange90d = crypto.quote?.get("USD")?.percentChange90d,
+                    marketCap = crypto.quote?.get("USD")?.marketCap,
+                    marketCapDominance = crypto.quote?.get("USD")?.marketCapDominance,
+                    fullyDilutedMarketCap = crypto.quote?.get("USD")?.fullyDilutedMarketCap,
+                    tvl = crypto.quote?.get("USD")?.tvl
                 )
             }
             cryptoDao.insertAll(cryptoEntities)
