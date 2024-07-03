@@ -31,8 +31,8 @@ fun ScaffoldLayout(activityName: String, @DrawableRes id: Int,navController: Nav
             topBar = { AppHeader(activityName = activityName, id = id)},
             bottomBar = { SimpleNavigationBar(navController) }
         )
-        {innerPadding ->
-            ScrollingStock(innerPadding = innerPadding,viewModel)
+        { innerPadding ->
+            SettingsScreen (onLogOutClick,innerPadding,userPreferences,currentUser)
         }
     }
     else if (id == R.drawable.baseline_assistant_24) {
@@ -40,10 +40,9 @@ fun ScaffoldLayout(activityName: String, @DrawableRes id: Int,navController: Nav
             topBar = { AppHeader(activityName = activityName, id = id)},
             bottomBar = { SimpleNavigationBar(navController) }
         )
-        { innerPadding ->
-            SettingsScreen (onLogoutClick = {},innerPadding,userPreferences,currentUser)
+        {innerPadding ->
+            ScrollingStock(innerPadding = innerPadding,viewModel)
         }
-
     }
 
 }

@@ -13,7 +13,7 @@ data class CryptoEntity(
     val dateAdded: String,
     val tags: List<String>,
     val maxSupply: Long?,
-    val circulatingSupply: Long,
+    val circulatingSupply: Double,
     val totalSupply: Long,
     val infiniteSupply: Boolean,
     val platform: String?,

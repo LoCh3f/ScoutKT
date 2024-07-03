@@ -2,6 +2,7 @@ package com.example.scoutkt.data.remote.crypto
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import kotlinx.serialization.UseSerializers
 
 @Serializable
 data class CryptoResponse(
@@ -18,7 +19,7 @@ data class Crypto(
     @SerialName("date_added") val dateAdded: String,
     val tags: List<String>,
     @SerialName("max_supply") val maxSupply: Long?,
-    @SerialName("circulating_supply") val circulatingSupply: Long,
+    @SerialName("circulating_supply") @Serializable(with = DoubleAsStringSerializer::class) val circulatingSupply: Double,
     @SerialName("total_supply") val totalSupply: Long,
     @SerialName("infinite_supply") val infiniteSupply: Boolean,
     val platform: String?,

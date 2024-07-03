@@ -25,6 +25,7 @@ class MainActivity : ComponentActivity() {
         marketPreferences = MarketPreferences(context = this)
         userPreferences = UserPreferences(context = this)
         viewModel = ViewModelProvider(this, CryptoViewModelFactory(application)).get(CryptoViewModel::class.java)
+        viewModel.refreshCryptos()
         enableEdgeToEdge()
         setContent {
             ScoutKTTheme {

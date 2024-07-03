@@ -25,7 +25,6 @@ fun ScrollingStock(
 ) {
     val cryptoList = viewModel.cryptos.observeAsState(initial = emptyList()).value
 
-
     LazyColumn(
         modifier = Modifier
             .background(color = MaterialTheme.colorScheme.background)

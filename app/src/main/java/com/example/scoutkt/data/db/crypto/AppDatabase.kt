@@ -8,7 +8,7 @@ import androidx.room.TypeConverter
 import androidx.room.TypeConverters
 import com.example.scoutkt.data.db.crypto.converter.TagConverter
 
-@Database(entities = [CryptoEntity::class], version = 1, exportSchema = false)
+@Database(entities = [CryptoEntity::class], version = 2, exportSchema = false)
 @TypeConverters(TagConverter::class)
 abstract class AppDatabase : RoomDatabase() {
 
