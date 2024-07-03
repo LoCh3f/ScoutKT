@@ -1,4 +1,4 @@
-package com.example.scoutkt.mainui.components
+package com.example.scoutkt.mainui.components.home
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.Image
@@ -13,10 +13,11 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.example.scoutkt.R
+import com.example.scoutkt.data.db.crypto.CryptoEntity
 
 @Composable
 fun StockCard(
-    percentage: Float, // Percentuale letta dal database Room
+    cryptoEntity: CryptoEntity, // Passa l'oggetto CryptoEntity come argomento
     onHeartClick: () -> Unit // Azione da eseguire quando si clicca sul cuore
 ) {
     Card(
@@ -46,9 +47,9 @@ fun StockCard(
                 )
                 Spacer(modifier = Modifier.width(8.dp))
                 Text(
-                    text = "${percentage}%",
+                    text = "${cryptoEntity.percentChange1h}%",
                     style = MaterialTheme.typography.bodyLarge,
-                    color = if (percentage < 0) Color.Red else Color.Green
+                    color = if (cryptoEntity.percentChange1h!! < 0) Color.Red else Color.Green
                 )
                 Spacer(modifier = Modifier.weight(1f))
                 IconButton(
@@ -65,14 +66,30 @@ fun StockCard(
                 }
             }
             AnimatedVisibility(visible = expanded) {
-                Text(
-                    text = "Settete",
-                    style = MaterialTheme.typography.bodyMedium,
-                    modifier = Modifier.padding(top = 8.dp)
-                )
+                Column {
+                    Text(
+                        text = "Symbol: ${cryptoEntity.symbol}",
+                        style = MaterialTheme.typography.bodyMedium,
+                        modifier = Modifier.padding(top = 8.dp)
+                    )
+                    Text(
+                        text = "Price: ${cryptoEntity.price}",
+                        style = MaterialTheme.typography.bodyMedium,
+                        modifier = Modifier.padding(top = 8.dp)
+                    )
+                    Text(
+                        text = "Volume 24h: ${cryptoEntity.volume24h}",
+                        style = MaterialTheme.typography.bodyMedium,
+                        modifier = Modifier.padding(top = 8.dp)
+                    )
+                    Text(
+                        text = "Market Cap: ${cryptoEntity.marketCap}",
+                        style = MaterialTheme.typography.bodyMedium,
+                        modifier = Modifier.padding(top = 8.dp)
+                    )
+                    // Aggiungi altre informazioni necessarie
+                }
             }
         }
     }
 }
-
-

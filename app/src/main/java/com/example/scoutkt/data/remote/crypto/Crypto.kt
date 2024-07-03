@@ -1,24 +1,48 @@
 package com.example.scoutkt.data.remote.crypto
 
+import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
+data class CryptoResponse(
+    val data: List<Crypto>
+)
+
+@Serializable
 data class Crypto(
-    var id: Int,
-    var name: String,
-    var symbols: String,
-    var slug: String,
-    var num_market_pairs: Int,
-    var date_added: String,
-    var tags: List<String>,
-    var max_supply: Int,
-    var circlating_supply: Int,
-    var total_supply: Int,
-    var infinite_supply: Boolean,
-    var cmc_rank: Int,
-    var self_reported_circulating_supply: Int?,
-    var self_repoted_market_cap: Int?,
-    var tvl_ratio: Float?,
-    var last_update: String,
-    var quote: Quote
-    )
+    val id: Int,
+    val name: String,
+    val symbol: String,
+    val slug: String,
+    @SerialName("num_market_pairs") val numMarketPairs: Int,
+    @SerialName("date_added") val dateAdded: String,
+    val tags: List<String>,
+    @SerialName("max_supply") val maxSupply: Long?,
+    @SerialName("circulating_supply") val circulatingSupply: Long,
+    @SerialName("total_supply") val totalSupply: Long,
+    @SerialName("infinite_supply") val infiniteSupply: Boolean,
+    val platform: String?,
+    @SerialName("cmc_rank") val cmcRank: Int,
+    @SerialName("self_reported_circulating_supply") val selfReportedCirculatingSupply: Long?,
+    @SerialName("self_reported_market_cap") val selfReportedMarketCap: Long?,
+    @SerialName("tvl_ratio") val tvlRatio: Float?,
+    @SerialName("last_updated") val lastUpdated: String,
+    val quote: Map<String, Quote>
+)
+
+@Serializable
+data class Quote(
+    val price: Double,
+    @SerialName("volume_24h") val volume24h: Double,
+    @SerialName("volume_change_24h") val volumeChange24h: Double,
+    @SerialName("percent_change_1h") val percentChange1h: Float,
+    @SerialName("percent_change_24h") val percentChange24h: Float,
+    @SerialName("percent_change_7d") val percentChange7d: Float,
+    @SerialName("percent_change_30d") val percentChange30d: Float,
+    @SerialName("percent_change_60d") val percentChange60d: Float,
+    @SerialName("percent_change_90d") val percentChange90d: Float,
+    @SerialName("market_cap") val marketCap: Double,
+    @SerialName("market_cap_dominance") val marketCapDominance: Double,
+    @SerialName("fully_diluted_market_cap") val fullyDilutedMarketCap: Double,
+    val tvl: Double?
+)

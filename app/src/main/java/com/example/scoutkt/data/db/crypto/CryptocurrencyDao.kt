@@ -8,17 +8,20 @@ import androidx.room.Query
 interface CryptocurrencyDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertCryptocurrency(cryptocurrency: Cryptocurrency)
+    suspend fun insertCryptocurrency(cryptocurrency: CryptoEntity)
 
-    @Query("SELECT * FROM cryptocurrencies WHERE id = :id")
-    suspend fun getCryptocurrencyById(id: Long): Cryptocurrency?
+    @Query("SELECT * FROM cryptos WHERE id = :id")
+    suspend fun getCryptocurrencyById(id: Long): CryptoEntity?
 
-    @Query("SELECT * FROM cryptocurrencies ORDER BY cmcRank ASC")
-    suspend fun getAllCryptocurrencies(): List<Cryptocurrency>
+    @Query("SELECT * FROM cryptos ORDER BY cmcRank ASC")
+    suspend fun getAllCryptocurrencies(): List<CryptoEntity>
 
-    @Query("DELETE FROM cryptocurrencies")
+    @Query("DELETE FROM cryptos")
     suspend fun deleteAllCryptocurrencies()
 
-    @Query("SELECT * FROM cryptocurrencies WHERE name IN (:cryptoNames)")
-    suspend fun getCryptocurrenciesByName(cryptoNames: List<String>): List<Cryptocurrency>
+    @Query("SELECT * FROM cryptos WHERE name IN (:cryptoNames)")
+    suspend fun getCryptocurrenciesByName(cryptoNames: List<String>): List<CryptoEntity>
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertAll(cryptos: List<CryptoEntity>)
 }

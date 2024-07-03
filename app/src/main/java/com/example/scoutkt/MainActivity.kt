@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.lifecycle.ViewModelProvider
 import com.example.scoutkt.data.preferences.CurrentUser
 import com.example.scoutkt.data.preferences.MarketPreferences
 import com.example.scoutkt.data.preferences.UserPreferences
@@ -17,11 +18,13 @@ class MainActivity : ComponentActivity() {
     private lateinit var currentUser: CurrentUser
     private lateinit var marketPreferences: MarketPreferences
     private lateinit var userPreferences: UserPreferences
+    private lateinit var viewModel: CryptoViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         currentUser = CurrentUser(context = this)
         marketPreferences = MarketPreferences(context = this)
         userPreferences = UserPreferences(context = this)
+        viewModel = ViewModelProvider(this, CryptoViewModelFactory(application)).get(CryptoViewModel::class.java)
         enableEdgeToEdge()
         setContent {
             ScoutKTTheme {
@@ -30,7 +33,8 @@ class MainActivity : ComponentActivity() {
                         val intent = Intent(this, LoginActivity::class.java)
                         startActivity(intent)
                         currentUser.setCurrentUser()
-                    }
+                    },
+                    viewModel
                 )
             }
         }

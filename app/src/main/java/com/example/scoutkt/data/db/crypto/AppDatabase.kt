@@ -4,8 +4,12 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.room.TypeConverter
+import androidx.room.TypeConverters
+import com.example.scoutkt.data.db.crypto.converter.TagConverter
 
-@Database(entities = [Cryptocurrency::class], version = 1, exportSchema = false)
+@Database(entities = [CryptoEntity::class], version = 1, exportSchema = false)
+@TypeConverters(TagConverter::class)
 abstract class AppDatabase : RoomDatabase() {
 
     abstract fun cryptocurrencyDao(): CryptocurrencyDao

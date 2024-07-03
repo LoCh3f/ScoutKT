@@ -1,11 +1,15 @@
 import org.jetbrains.kotlin.gradle.targets.js.nodejs.NodeJsRootPlugin.Companion.kotlinNodeJsExtension
 import kotlin.script.experimental.jvm.util.classpathFromClass
 
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
     alias(libs.plugins.gms)
     kotlin("plugin.serialization") version "1.9.0"
+    kotlin("kapt")
+    id("com.google.devtools.ksp")
+
 }
 
 android {
@@ -54,6 +58,7 @@ android {
     }
 }
 
+
 dependencies {
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
@@ -66,11 +71,18 @@ dependencies {
     implementation(libs.androidx.material3)
     implementation(libs.androidx.navigation.compose)
     implementation(libs.androidx.datastore)
+
     implementation(libs.yahoo.finance)
     implementation(platform(libs.firebase.bom))
     implementation(libs.firebase.analytics)
     implementation(libs.firebase.auth)
-    implementation(libs.room)
+    implementation(libs.room.runtime)
+    implementation(libs.androidx.room.guava)
+    implementation(libs.room.ktx)
+
+    ksp(libs.room.compiler)
+
+
     implementation(libs.gson)
     implementation(libs.coil.compose)
     implementation(libs.coroutines)
@@ -83,7 +95,7 @@ dependencies {
     implementation(libs.io.ktor.serialization)
     implementation(libs.io.ktor.json)
     implementation(libs.io.ktor.cio)
-    annotationProcessor(libs.room.compiler)
+    implementation(libs.androidx.runtime.livedata)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

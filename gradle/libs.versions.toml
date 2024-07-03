@@ -11,9 +11,13 @@ lifecycleRuntimeKtx = "2.8.0"
 activityCompose = "1.8.0"
 composeBom = "2023.08.00"
 navigationCompose = "2.7.7"
+roomGuava = "2.6.1"
+roomKtx = "2.6.1"
+runtimeLivedata = "1.6.8"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
+androidx-room-guava = { module = "androidx.room:room-guava", version.ref = "roomGuava" }
 coil-compose = { module = "io.coil-kt:coil-compose", version.ref = "coilCompose" }
 gson = { module = "com.google.code.gson:gson", version.ref = "gson" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
@@ -32,6 +36,7 @@ androidx-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit
 androidx-material3 = { group = "androidx.compose.material3", name = "material3" }
 androidx-navigation = {group = "androidx.navigation", name = "navigation"}
 androidx-navigation-compose = { group = "androidx.navigation", name = "navigation-compose", version.ref = "navigationCompose" }
+room-ktx = { module = "androidx.room:room-ktx", version.ref = "roomKtx" }
 yahoo-finance = {group = "com.yahoofinance-api", name = "YahooFinanceAPI", version = "3.9.0" }
 androidx-datastore = { group = "androidx.datastore", name = "datastore-preferences", version = "1.1.1"}
 firebase-bom = { group = "com.google.firebase", name = "firebase-bom", version = "33.1.0"}
@@ -39,7 +44,7 @@ firebase-analytics = {group = "com.google.firebase", name = "firebase-analytics"
 firebase-auth = {group = "com.google.firebase", name = "firebase-auth", version = "23.0.0"}
 lifecycle-lifetime-ktx = {group = "org.jetbrains.kotlinx", name = "lifecycle-li"}
 #noinspection UseOfBundledGooglePlayServices
-room = { group = "androidx.room", name = "room-runtime", version = "2.6.1"}
+room-runtime = { group = "androidx.room", name = "room-runtime", version = "2.6.1"}
 room-compiler = { group = "androidx.room", name = "room-compiler", version = "2.6.1"}
 coroutines = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-android", version = "1.7.3"}
 gms = {group = "com.google.android.gms", name = "play-services-auth", version = "21.2.0"}
@@ -52,10 +57,10 @@ io-ktor-cio = {group = "io.ktor", name = "ktor-client-cio", version = "2.3.8"}
 io-ktor-content = { group = "io.ktor", name = "ktor-client-content-negotiation", version = "2.3.8" }
 io-ktor-serialization = { group = "io.ktor", name = "ktor-serialization-kotlinx-json",version = "2.3.8"}
 kotlinx-serialization = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version = "1.5.1"}
+androidx-runtime-livedata = { group = "androidx.compose.runtime", name = "runtime-livedata", version.ref = "runtimeLivedata" }
 
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 gms = {id = "com.google.gms.google-services", version = "4.4.2"}
-
