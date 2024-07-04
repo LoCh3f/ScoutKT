@@ -22,7 +22,7 @@ fun StockCard(
     Card(
         modifier = Modifier
             .fillMaxWidth() // Occupa tutta la larghezza dello schermo
-            .padding(16.dp),
+            .padding(8.dp),
         shape = RoundedCornerShape(8.dp),
         elevation = CardDefaults.cardElevation(4.dp)
     ) {

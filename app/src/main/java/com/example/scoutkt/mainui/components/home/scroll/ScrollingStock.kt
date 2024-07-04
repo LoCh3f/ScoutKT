@@ -28,7 +28,7 @@ fun ScrollingStock(
             .background(color = MaterialTheme.colorScheme.background)
             .fillMaxSize()
             .padding(innerPadding),
-        verticalArrangement = Arrangement.spacedBy(16.dp),
+        verticalArrangement = Arrangement.SpaceEvenly,
         horizontalAlignment = Alignment.CenterHorizontally,
         contentPadding = PaddingValues(16.dp)
     ) {
