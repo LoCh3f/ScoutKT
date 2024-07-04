@@ -36,7 +36,7 @@ fun StockCard(
                 .padding(16.dp)
         ) {
             Row(
-                verticalAlignment = Alignment.CenterVertically,
+                verticalAlignment = Alignment.Bottom,
                 horizontalArrangement = Arrangement.SpaceBetween,
                 modifier = Modifier.fillMaxWidth()
             ) {
