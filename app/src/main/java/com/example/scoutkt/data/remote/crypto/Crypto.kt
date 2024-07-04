@@ -33,7 +33,7 @@ data class Crypto(
     @SerialName("circulating_supply") @Serializable(with = DoubleAsStringSerializer::class) val circulatingSupply: Double?,
     @SerialName("total_supply") @Serializable(with = DoubleAsStringSerializer::class) val totalSupply: Double?,
     @SerialName("infinite_supply") val infiniteSupply: Boolean?,
-    val platform: String?,
+    val platform: Platform?,
     @SerialName("cmc_rank") val cmcRank: Int?,
     @SerialName("self_reported_circulating_supply") val selfReportedCirculatingSupply: Long?,
     @SerialName("self_reported_market_cap") val selfReportedMarketCap: Long?,
@@ -57,4 +57,13 @@ data class Quote(
     @SerialName("market_cap_dominance") val marketCapDominance: Double?,
     @SerialName("fully_diluted_market_cap") val fullyDilutedMarketCap: Double?,
     val tvl: Double?
+)
+
+@Serializable
+data class Platform(
+    @SerialName("id") val id: Int,
+    @SerialName("name") val name: String,
+    @SerialName("symbol") val symbol: String,
+    @SerialName("slug") val slug: String,
+    @SerialName("token_address") val tokenAddress: String
 )

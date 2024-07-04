@@ -27,7 +27,6 @@ class CryptoRepository(
                     circulatingSupply = crypto.circulatingSupply,
                     totalSupply = crypto.totalSupply,
                     infiniteSupply = crypto.infiniteSupply,
-                    platform = crypto.platform,
                     cmcRank = crypto.cmcRank,
                     selfReportedCirculatingSupply = crypto.selfReportedCirculatingSupply,
                     selfReportedMarketCap = crypto.selfReportedMarketCap,

@@ -16,7 +16,6 @@ data class CryptoEntity(
     val circulatingSupply: Double?,
     val totalSupply: Double?,
     val infiniteSupply: Boolean?,
-    val platform: String?,
     val cmcRank: Int?,
     val selfReportedCirculatingSupply: Long?,
     val selfReportedMarketCap: Long?,
