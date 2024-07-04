@@ -40,10 +40,10 @@ fun StockCard(
                 horizontalArrangement = Arrangement.SpaceBetween,
                 modifier = Modifier.fillMaxWidth()
             ) {
-                Image(
-                    painter = painterResource(R.drawable.baseline_home_24),
-                    contentDescription = "Stock Image",
-                    modifier = Modifier.size(48.dp)
+                Text(
+                    text = cryptoEntity.symbol,
+                    style = MaterialTheme.typography.bodyMedium,
+                    modifier = Modifier.padding(top = 8.dp)
                 )
                 Spacer(modifier = Modifier.width(8.dp))
                 Text(
@@ -68,12 +68,12 @@ fun StockCard(
             AnimatedVisibility(visible = expanded) {
                 Column {
                     Text(
-                        text = "Symbol: ${cryptoEntity.symbol}",
+                        text = cryptoEntity.name,
                         style = MaterialTheme.typography.bodyMedium,
                         modifier = Modifier.padding(top = 8.dp)
                     )
                     Text(
-                        text = "Price: ${cryptoEntity.price}",
+                        text = "Price US Dollar: ${cryptoEntity.price}",
                         style = MaterialTheme.typography.bodyMedium,
                         modifier = Modifier.padding(top = 8.dp)
                     )
