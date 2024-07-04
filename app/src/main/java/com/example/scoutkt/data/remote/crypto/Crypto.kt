@@ -69,6 +69,13 @@ data class Platform(
     @SerialName("token_address") val tokenAddress: String
 )
 
+@Serializable
+data class HistoricalResponse(
+    val status: Status,
+    val data: List<HistoricalData>
+)
+
+@Serializable
 data class HistoricalData(
     @SerialName("date") val date: String,
     @SerialName("open") val open: Double,

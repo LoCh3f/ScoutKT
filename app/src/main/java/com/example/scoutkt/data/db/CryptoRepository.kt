@@ -3,6 +3,7 @@ package com.example.scoutkt.data
 import com.example.scoutkt.data.db.crypto.CryptocurrencyDao
 import com.example.scoutkt.data.db.crypto.CryptoEntity
 import com.example.scoutkt.data.remote.GetService
+import com.example.scoutkt.data.remote.crypto.HistoricalData
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
@@ -54,5 +55,9 @@ class CryptoRepository(
 
     suspend fun getAllCryptos(): List<CryptoEntity> {
         return cryptoDao.getAllCryptocurrencies()
+    }
+
+    suspend fun getHistoricalFromSymbol(symbol: String): List<HistoricalData> {
+        return getService.getHistoricalData(symbol)
     }
 }
