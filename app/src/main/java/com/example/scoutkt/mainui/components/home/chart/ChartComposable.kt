@@ -4,11 +4,12 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.viewinterop.AndroidView
+import com.tradingview.lightweightcharts.api.series.common.SeriesData
 import com.tradingview.lightweightcharts.view.ChartsView
 
 @Composable
 fun ChartComposable(
-    symbol: String,
+    data: List<SeriesData>,
     onChartReady: (ChartsView) -> Unit = {}
 ) {
     // Crea il componente AndroidView per ospitare il ChartsView
@@ -25,6 +26,7 @@ fun ChartComposable(
         update = { chartsView ->
             // Aggiorna il grafico, se necessario
             // Puoi aggiornare i dati del grafico qui
+
         }
     )
 }

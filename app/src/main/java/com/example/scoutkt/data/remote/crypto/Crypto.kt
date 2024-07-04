@@ -1,5 +1,6 @@
 package com.example.scoutkt.data.remote.crypto
 
+import com.google.gson.annotations.SerializedName
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.UseSerializers
@@ -66,4 +67,12 @@ data class Platform(
     @SerialName("symbol") val symbol: String,
     @SerialName("slug") val slug: String,
     @SerialName("token_address") val tokenAddress: String
+)
+
+data class HistoricalData(
+    @SerialName("date") val date: String,
+    @SerialName("open") val open: Double,
+    @SerialName("high") val high: Double,
+    @SerialName("low") val low: Double,
+    @SerialName("close") val close: Double
 )
