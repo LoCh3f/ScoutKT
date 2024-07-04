@@ -6,7 +6,18 @@ import kotlinx.serialization.UseSerializers
 
 @Serializable
 data class CryptoResponse(
-    val data: List<Crypto>
+    @SerialName("status") val status: Status,
+    @SerialName("data") val data: List<Crypto>
+)
+@Serializable
+data class Status(
+    @SerialName("timestamp") val timestamp: String,
+    @SerialName("error_code") val errorCode: Int,
+    @SerialName("error_message") val errorMessage: String?,
+    @SerialName("elapsed") val elapsed: Int,
+    @SerialName("credit_count") val creditCount: Int,
+    @SerialName("notice") val notice: String?,
+    @SerialName("total_count") val totalCount: Int
 )
 
 @Serializable
@@ -20,7 +31,7 @@ data class Crypto(
     val tags: List<String>?,
     @SerialName("max_supply") val maxSupply: Long?,
     @SerialName("circulating_supply") @Serializable(with = DoubleAsStringSerializer::class) val circulatingSupply: Double?,
-    @SerialName("total_supply") val totalSupply: Long?,
+    @SerialName("total_supply") @Serializable(with = DoubleAsStringSerializer::class) val totalSupply: Double?,
     @SerialName("infinite_supply") val infiniteSupply: Boolean?,
     val platform: String?,
     @SerialName("cmc_rank") val cmcRank: Int?,

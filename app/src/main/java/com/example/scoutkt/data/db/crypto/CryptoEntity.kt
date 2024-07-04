@@ -14,7 +14,7 @@ data class CryptoEntity(
     val tags: List<String>?,
     val maxSupply: Long?,
     val circulatingSupply: Double?,
-    val totalSupply: Long?,
+    val totalSupply: Double?,
     val infiniteSupply: Boolean?,
     val platform: String?,
     val cmcRank: Int?,

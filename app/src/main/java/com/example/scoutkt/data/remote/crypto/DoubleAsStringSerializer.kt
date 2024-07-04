@@ -8,7 +8,7 @@ import kotlinx.serialization.encoding.Decoder
 import kotlinx.serialization.encoding.Encoder
 
 object DoubleAsStringSerializer : KSerializer<Double> {
-    override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor("Double", PrimitiveKind.STRING)
+    override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor("MyConverter", PrimitiveKind.STRING)
 
     override fun deserialize(decoder: Decoder): Double {
         val string = decoder.decodeString()
