@@ -15,6 +15,7 @@ navigationCompose = "2.7.7"
 roomGuava = "2.6.1"
 roomKtx = "2.6.1"
 runtimeLivedata = "1.6.8"
+constraintlayout = "2.1.4"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -60,6 +61,7 @@ io-ktor-content = { group = "io.ktor", name = "ktor-client-content-negotiation",
 io-ktor-serialization = { group = "io.ktor", name = "ktor-serialization-kotlinx-json",version = "2.3.8"}
 kotlinx-serialization = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version = "1.5.1"}
 androidx-runtime-livedata = { group = "androidx.compose.runtime", name = "runtime-livedata", version.ref = "runtimeLivedata" }
+androidx-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
 
 
 [plugins]

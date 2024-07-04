@@ -79,6 +79,7 @@ dependencies {
     implementation(libs.room.runtime)
     implementation(libs.androidx.room.guava)
     implementation(libs.room.ktx)
+    implementation(libs.androidx.constraintlayout)
 
     ksp(libs.room.compiler)
 
