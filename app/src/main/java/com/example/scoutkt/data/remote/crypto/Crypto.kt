@@ -35,9 +35,9 @@ data class Crypto(
     @SerialName("infinite_supply") val infiniteSupply: Boolean?,
     val platform: Platform?,
     @SerialName("cmc_rank") val cmcRank: Int?,
-    @SerialName("self_reported_circulating_supply") val selfReportedCirculatingSupply: Long?,
-    @SerialName("self_reported_market_cap") val selfReportedMarketCap: Long?,
-    @SerialName("tvl_ratio") val tvlRatio: Float?,
+    @SerialName("self_reported_circulating_supply") val selfReportedCirculatingSupply: Double?,
+    @SerialName("self_reported_market_cap") val selfReportedMarketCap: Double?,
+    @SerialName("tvl_ratio") val tvlRatio: Double?,
     @SerialName("last_updated") val lastUpdated: String?,
     val quote: Map<String, Quote>?
 )
