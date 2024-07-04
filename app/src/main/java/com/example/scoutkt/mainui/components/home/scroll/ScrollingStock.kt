@@ -1,4 +1,4 @@
-package com.example.scoutkt.mainui.components.home
+package com.example.scoutkt.mainui.components.home.scroll
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -13,10 +13,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.example.scoutkt.CryptoViewModel
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
-import androidx.compose.runtime.setValue
+import com.example.scoutkt.mainui.components.home.StockCard
 
 @Composable
 fun ScrollingStock(
