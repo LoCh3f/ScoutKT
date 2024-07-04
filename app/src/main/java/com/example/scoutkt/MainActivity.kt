@@ -28,6 +28,7 @@ class MainActivity : ComponentActivity() {
         userPreferences = UserPreferences(context = this)
         viewModel = ViewModelProvider(this, CryptoViewModelFactory(application)).get(CryptoViewModel::class.java)
         viewModel.refreshCryptos()
+        viewModel.refreshHistory("BTC")
         enableEdgeToEdge()
         setContent {
             ScoutKTTheme {

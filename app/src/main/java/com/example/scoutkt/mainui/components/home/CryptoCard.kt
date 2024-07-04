@@ -13,11 +13,14 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.example.scoutkt.R
 import com.example.scoutkt.data.db.crypto.CryptoEntity
+import com.example.scoutkt.data.remote.crypto.HistoricalData
 
 @Composable
 fun StockCard(
     cryptoEntity: CryptoEntity, // Passa l'oggetto CryptoEntity come argomento
+    history: List<HistoricalData>,
     onHeartClick: () -> Unit // Azione da eseguire quando si clicca sul cuore
+
 ) {
     Card(
         modifier = Modifier

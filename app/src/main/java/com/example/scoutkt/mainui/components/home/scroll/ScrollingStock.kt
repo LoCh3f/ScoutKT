@@ -14,7 +14,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.example.scoutkt.CryptoViewModel
 import androidx.compose.runtime.livedata.observeAsState
+import androidx.compose.ui.platform.LocalContext
 import com.example.scoutkt.mainui.components.home.StockCard
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.currentCoroutineContext
 
 @Composable
 fun ScrollingStock(
@@ -22,7 +26,7 @@ fun ScrollingStock(
     viewModel: CryptoViewModel
 ) {
     val cryptoList = viewModel.cryptos.observeAsState(initial = emptyList()).value
-
+    val history = viewModel.history.observeAsState(initial = emptyList()).value
     LazyColumn(
         modifier = Modifier
             .background(color = MaterialTheme.colorScheme.background)
@@ -33,9 +37,12 @@ fun ScrollingStock(
         contentPadding = PaddingValues(16.dp)
     ) {
         items(cryptoList) { crypto ->
-            StockCard(cryptoEntity = crypto,) {
+            viewModel.refreshHistory(crypto.symbol)
+            StockCard(cryptoEntity = crypto,history) {
 
             }
         }
     }
 }
+
+
