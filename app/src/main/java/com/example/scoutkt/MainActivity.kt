@@ -13,12 +13,14 @@ import com.example.scoutkt.login.LoginActivity
 import com.example.scoutkt.mainui.navigation.ComposeNavigation
 
 import com.example.scoutkt.mainui.theme.ScoutKTTheme
+import com.tradingview.lightweightcharts.view.ChartsView
 
 class MainActivity : ComponentActivity() {
     private lateinit var currentUser: CurrentUser
     private lateinit var marketPreferences: MarketPreferences
     private lateinit var userPreferences: UserPreferences
     private lateinit var viewModel: CryptoViewModel
+    private lateinit var chartsView: ChartsView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         currentUser = CurrentUser(context = this)
