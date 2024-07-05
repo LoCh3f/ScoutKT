@@ -17,6 +17,7 @@ roomGuava = "2.6.1"
 roomKtx = "2.6.1"
 runtimeLivedata = "1.6.8"
 constraintlayout = "2.1.4"
+ycharts = "2.1.0"
 
 [libraries]
 accompanist-webview = { module = "com.google.accompanist:accompanist-webview", version.ref = "accompanistWebview" }
@@ -64,6 +65,7 @@ io-ktor-serialization = { group = "io.ktor", name = "ktor-serialization-kotlinx-
 kotlinx-serialization = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version = "1.5.1"}
 androidx-runtime-livedata = { group = "androidx.compose.runtime", name = "runtime-livedata", version.ref = "runtimeLivedata" }
 androidx-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
+ycharts = { module = "co.yml:ycharts", version.ref = "ycharts" }
 
 
 [plugins]

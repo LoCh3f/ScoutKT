@@ -15,6 +15,7 @@ import androidx.room.util.TableInfo
 import com.example.scoutkt.R
 import com.example.scoutkt.data.db.crypto.CryptoEntity
 import com.example.scoutkt.data.remote.crypto.HistoricalData
+import com.example.scoutkt.mainui.components.home.chart.LineChart
 
 @Composable
 fun StockCard(
@@ -78,7 +79,7 @@ fun StockCard(
             }
             AnimatedVisibility(visible = expanded) {
                 Column {
-                    TradingViewChart(data = generateFakeHistoricalData())
+                    LineChart()
                     Text(
                         text = cryptoEntity.name,
                         style = MaterialTheme.typography.bodyMedium,

@@ -107,4 +107,6 @@ dependencies {
 
     // Trading view API
     implementation(libs.lightweightcharts)
+    implementation(libs.ycharts)
+
     }

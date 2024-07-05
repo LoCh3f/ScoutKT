@@ -10,6 +10,7 @@ import com.example.scoutkt.data.CryptoRepository
 import com.example.scoutkt.data.remote.crypto.HistoricalData
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import yahoofinance.YahooFinance
 import yahoofinance.quotes.fx.FxSymbols
 
 class CryptoViewModel(private val repository: CryptoRepository) : ViewModel() {
@@ -37,11 +38,7 @@ class CryptoViewModel(private val repository: CryptoRepository) : ViewModel() {
         }
     }
 
-    fun refreshHistory(symbols: String) {
-        viewModelScope.launch(Dispatchers.IO){
-            _history.postValue(repository.getHistoricalFromSymbol(symbols))
-        }
-    }
+
 
 
 }
