@@ -37,7 +37,7 @@ fun ScrollingStock(
         contentPadding = PaddingValues(16.dp)
     ) {
         items(cryptoList) { crypto ->
-            viewModel.refreshHistory(crypto.symbol)
+            //viewModel.refreshHistory(crypto.symbol)
             StockCard(cryptoEntity = crypto,history) {
 
             }
