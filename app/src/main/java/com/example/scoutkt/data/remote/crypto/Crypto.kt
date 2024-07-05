@@ -77,7 +77,10 @@ data class HistoricalResponse(
 
 @Serializable
 data class HistoricalData(
-    @SerialName("date") val date: String,
+    val timePeriodStart: String,
+    val timePeriodEnd: String,
+    val timeOpen: String,
+    val timeClose: String,
     @SerialName("open") val open: Double,
     @SerialName("high") val high: Double,
     @SerialName("low") val low: Double,

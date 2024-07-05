@@ -11,6 +11,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import androidx.room.util.TableInfo
 import com.example.scoutkt.R
 import com.example.scoutkt.data.db.crypto.CryptoEntity
 import com.example.scoutkt.data.remote.crypto.HistoricalData
@@ -47,11 +48,20 @@ fun StockCard(
                     style = MaterialTheme.typography.bodyMedium
                 )
                 Spacer(modifier = Modifier.width(8.dp))
-                Text(
-                    text = "${cryptoEntity.percentChange1h}%",
-                    style = MaterialTheme.typography.bodyLarge,
-                    color = if (cryptoEntity.percentChange1h!! < 0) Color.Red else Color.Green
-                )
+                Column(horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.Center) {
+
+                    Text(
+                        text = "$${cryptoEntity.price}",
+                        style = MaterialTheme.typography.bodyMedium,
+                        modifier = Modifier.padding(top = 8.dp)
+                    )
+                    Text(
+                        text = "${cryptoEntity.percentChange1h}%",
+                        style = MaterialTheme.typography.bodyLarge,
+                        color = if (cryptoEntity.percentChange1h!! < 0) Color.Red else Color.Green
+                    )
+                }
+
                 Spacer(modifier = Modifier.weight(1f))
                 IconButton(
                     onClick = {
@@ -68,13 +78,9 @@ fun StockCard(
             }
             AnimatedVisibility(visible = expanded) {
                 Column {
+                    TradingViewChart(data = generateFakeHistoricalData())
                     Text(
                         text = cryptoEntity.name,
-                        style = MaterialTheme.typography.bodyMedium,
-                        modifier = Modifier.padding(top = 8.dp)
-                    )
-                    Text(
-                        text = "Price US Dollar: ${cryptoEntity.price}",
                         style = MaterialTheme.typography.bodyMedium,
                         modifier = Modifier.padding(top = 8.dp)
                     )
