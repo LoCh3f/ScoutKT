@@ -97,6 +97,7 @@ fun StockCard(
             }
             AnimatedVisibility(visible = expanded) {
                 Column {
+                    Spacer(modifier = Modifier.height(8.dp))
                     Text(
                         text = cryptoEntity.symbol,
                         style = MaterialTheme.typography.bodyMedium
@@ -118,6 +119,33 @@ fun StockCard(
                     )
                     Spacer(modifier = Modifier.height(8.dp))
 
+                    Text(
+                        text = "Last 24 hours: ${cryptoEntity.percentChange24h}%",
+                        style = MaterialTheme.typography.bodyLarge,
+                        color = if (cryptoEntity.percentChange24h!! < 0) Color.Red else Color.Green
+                    )
+                    Text(
+                        text = "Last 7 days: ${cryptoEntity.percentChange7d}%",
+                        style = MaterialTheme.typography.bodyLarge,
+                        color = if (cryptoEntity.percentChange7d!! < 0) Color.Red else Color.Green
+                    )
+                    Text(
+                        text = "Last 30 days: ${cryptoEntity.percentChange30d}%",
+                        style = MaterialTheme.typography.bodyLarge,
+                        color = if (cryptoEntity.percentChange30d!! < 0) Color.Red else Color.Green
+                    )
+                    Text(
+                        text = "Last 60 days: ${cryptoEntity.percentChange60d}%",
+                        style = MaterialTheme.typography.bodyLarge,
+                        color = if (cryptoEntity.percentChange60d!! < 0) Color.Red else Color.Green
+                    )
+                    Text(
+                        text = "Last 90 days: ${cryptoEntity.percentChange90d}%",
+                        style = MaterialTheme.typography.bodyLarge,
+                        color = if (cryptoEntity.percentChange90d!! < 0) Color.Red else Color.Green
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+2
                     LineChart()
 
                 }

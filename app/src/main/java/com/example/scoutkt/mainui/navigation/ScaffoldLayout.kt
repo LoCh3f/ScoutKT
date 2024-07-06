@@ -18,6 +18,7 @@ import com.example.scoutkt.mainui.components.settings.SettingsScreen
 
 @Composable
 fun ScaffoldLayout(activityName: String, @DrawableRes id: Int,navController: NavController,currentUser: CurrentUser,marketPreferences: MarketPreferences, userPreferences: UserPreferences, onLogOutClick: () -> Unit,viewModel: CryptoViewModel) {
+    viewModel.refreshCryptos()
     if (id == R.drawable.baseline_home_24) {
         Scaffold(modifier = Modifier,
             topBar = { AppHeader(activityName = activityName, id = id)},
