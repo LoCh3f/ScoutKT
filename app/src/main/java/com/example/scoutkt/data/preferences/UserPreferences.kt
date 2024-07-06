@@ -58,7 +58,7 @@ class UserPreferences(context: Context) {
         val userIndex = users.indexOfFirst { it.email == email }
         if (userIndex != -1) {
             users[userIndex].profileImagePath = profileImagePath
-            saveUsers(users) // Salva gli utenti aggiornati nella SharedPreferences
+            saveUser(users[userIndex].username,users[userIndex].email,users[userIndex].password,users[userIndex].profileImagePath) // Salva gli utenti aggiornati nella SharedPreferences
         }
     }
 
