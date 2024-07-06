@@ -106,7 +106,6 @@ dependencies {
     debugImplementation(libs.androidx.ui.test.manifest)
 
     // Trading view API
-    implementation(libs.lightweightcharts)
     implementation(libs.ycharts)
 
     }

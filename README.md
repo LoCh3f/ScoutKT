@@ -16,7 +16,6 @@ Benvenuti alla repository di **ScoutKT**! Siamo entusiasti di presentarvi la nos
 - [Funzionalità Principali](#funzionalità-principali)
 - [Tecnologia](#tecnologia)
 - [Vantaggi Competitivi](#vantaggi-competitivi)
-- [Testimonianze](#testimonianze)
 - [Chiamata all'Azione](#chiamata-allazione)
 - [Domande e Risposte](#domande-e-risposte)
 - [Istruzioni per l'Installazione](#istruzioni-per-linstallazione)
@@ -75,7 +74,9 @@ Grazie per il vostro interesse in ScoutKT! Se avete domande, sentitevi liberi di
     cd scoutkt
     ```
 3. Aprire il progetto con Android Studio.
-4. Costruire e eseguire l'app su un emulatore o un dispositivo fisico.
+4. Aggiungere le proprie api key gratuite per effettuare richieste a CoinMarketCup  \ScoutKT\app\src\main\java\com\example\scoutkt\data\remote\Key.kt
+5. Registrati per ottenere la tua chiave gratuita https://coinmarketcap.com/api/pricing/ 
+6. Costruire e eseguire l'app su un emulatore o un dispositivo fisico.
 
 ## Contributi
 
@@ -94,6 +95,26 @@ I contributi sono benvenuti! Per favore, seguite questi passaggi per contribuire
     git push origin feature/nome-feature
     ```
 5. Aprire una Pull Request.
+6. 
+## API Utilizzate
+### Third-Party Libraries
+- **Yahoo Finance:** `libs.yahoo.finance`
+- **Firebase BOM:** `platform(libs.firebase.bom)`
+- **Firebase Analytics:** `libs.firebase.analytics`
+- **Firebase Auth:** `libs.firebase.auth`
+- **Gson:** `libs.gson`
+- **Coil Compose:** `libs.coil.compose`
+- **Coroutines:** `libs.coroutines`
+- **Ktor Core:** `libs.io.ktor.core`
+- **Ktor Logging:** `libs.io.ktor.logging`
+- **Ktor Android:** `libs.io.ktor.android`
+- **Kotlinx Serialization:** `libs.kotlinx.serialization`
+- **Ktor Content:** `libs.io.ktor.content`
+- **Ktor OkHttp:** `libs.io.ktor.okhttp`
+- **Ktor Serialization:** `libs.io.ktor.serialization`
+- **Ktor JSON:** `libs.io.ktor.json`
+- **Ktor CIO:** `libs.io.ktor.cio`
+- **Trading View API:** `libs.ycharts`
 
 ## Licenza
 
