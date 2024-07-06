@@ -9,7 +9,6 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.*
@@ -24,7 +23,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.core.net.toUri
 import coil.compose.AsyncImage
-import coil.compose.rememberAsyncImagePainter
+import coil.compose.rememberImagePainter
 import coil.request.ImageRequest
 import com.example.scoutkt.R
 import com.example.scoutkt.data.preferences.CurrentUser
@@ -39,15 +38,27 @@ fun SettingsScreen(
     userPreferences: UserPreferences,
     currentUser: CurrentUser
 ) {
-    var profileImageUri by remember { mutableStateOf<Uri?>(currentUser.getCurrentUser()?.let { userPreferences.getImageUri(it) }) }
+    var profileImageUri by remember { mutableStateOf<Uri?>(null) }
     var showDialog by remember { mutableStateOf(false) }
-    var contentScale by remember { mutableStateOf(ContentScale.Crop) } // State for content scale
+    var contentScale by remember { mutableStateOf(ContentScale.Crop) }
     val ctx = LocalContext.current
+
+    // Load the saved profile image URI from UserPreferences
+    LaunchedEffect(currentUser.getCurrentUser()) {
+        val user = currentUser.getCurrentUser()
+        user?.let {
+            val savedUri = userPreferences.getUser(it)?.profileImagePath?.toUri()
+            if (savedUri != null) {
+                profileImageUri = savedUri
+            }
+        }
+    }
 
     val cameraLauncher = rememberCameraLauncher { uri ->
         if (uri != null) {
             profileImageUri = uri
-
+            currentUser.getCurrentUser()
+                ?.let { userPreferences.saveImage(it, uri.toString()) }
         }
     }
 
@@ -69,7 +80,8 @@ fun SettingsScreen(
     val launcherPickImage = rememberLauncherForActivityResult(ActivityResultContracts.GetContent()) { uri ->
         if (uri != null) {
             profileImageUri = uri
-
+            currentUser.getCurrentUser()
+                ?.let { userPreferences.saveImage(it, uri.toString()) }
         }
     }
 
@@ -103,9 +115,11 @@ fun SettingsScreen(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
-        // Profile Image
-        Text(text = "${currentUser.getCurrentUser()?.let { userPreferences.getUser(it)?.username  }}",
-                color = MaterialTheme.colorScheme.tertiary, style = MaterialTheme.typography.titleLarge)
+        Text(
+            text = "${currentUser.getCurrentUser()?.let { userPreferences.getUser(it)?.username }}",
+            color = MaterialTheme.colorScheme.tertiary,
+            style = MaterialTheme.typography.titleLarge
+        )
         Box(
             modifier = Modifier
                 .size(150.dp)
@@ -113,40 +127,40 @@ fun SettingsScreen(
                 .align(Alignment.CenterHorizontally)
                 .clip(CircleShape)
                 .border(2.dp, Color.Gray, CircleShape)
-                .clickable { showDialog = true } // Show dialog on image click
+                .clickable { showDialog = true }
         ) {
-            if (currentUser.getCurrentUser()?.let { userPreferences.getUser(it)?.profileImagePath } == null) {
-                Image(
-                    painter = painterResource(id = R.drawable.droid_head), // Placeholder image in your resourcesf
-                    contentDescription = null,
-                    modifier = Modifier.fillMaxSize(),
-                    contentScale = contentScale // Set content scale
-                )
-
-
-            } else {
+            if (profileImageUri != null) {
+                Log.d("Image should be $profileImageUri", "Image should be $profileImageUri")
                 AsyncImage(
-                    ImageRequest.Builder(ctx)
+                    model = ImageRequest.Builder(ctx)
                         .data(profileImageUri)
                         .crossfade(true)
                         .build(),
-                    "Selected image",
+                    contentDescription = "Selected image",
                     modifier = Modifier.fillMaxSize(),
                     contentScale = ContentScale.Crop
                 )
                 currentUser.getCurrentUser()
-                    ?.let { userPreferences.saveImage(it,profileImageUri.toString()) }
+                    ?.let { userPreferences.saveImage(it, profileImageUri.toString()) }
+            } else {
+                Log.d("No profile Image", "Profile Image not set")
+                Image(
+                    painter = painterResource(id = R.drawable.droid_head),
+                    contentDescription = null,
+                    modifier = Modifier.fillMaxSize(),
+                    contentScale = contentScale
+                )
+
             }
         }
         Spacer(modifier = Modifier.weight(1f))
-        // Logout Button
         Button(
             onClick = onLogoutClick,
             modifier = Modifier
                 .align(Alignment.CenterHorizontally)
                 .padding(top = 16.dp)
-                .size(100.dp), // Set the size of the button
-                shape =  ButtonDefaults.textShape
+                .size(100.dp),
+            shape = ButtonDefaults.textShape
         ) {
             Text(text = "Logout", color = Color.White)
         }
