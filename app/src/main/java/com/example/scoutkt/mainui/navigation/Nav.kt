@@ -16,15 +16,15 @@ import com.example.scoutkt.mainui.components.ScaffoldLayout
 @Composable
 fun ComposeNavigation(currentUser: CurrentUser, marketPreferences: MarketPreferences, userPreferences: UserPreferences,onLogOutClick: () -> Unit, viewModel: CryptoViewModel) {
     val  navController = rememberNavController()
-    NavHost(navController = navController, startDestination = "Home" ) {
+    NavHost(navController = navController, startDestination = "HOME" ) {
         composable("Home") {
-            ScaffoldLayout(activityName = "Home", id = R.drawable.baseline_home_24,navController,currentUser, marketPreferences, userPreferences, onLogOutClick,viewModel)
+            ScaffoldLayout(activityName = "HOME", id = R.drawable.baseline_home_24,navController,currentUser, marketPreferences, userPreferences, onLogOutClick,viewModel)
         }
         composable("Favorites") {
-            ScaffoldLayout(activityName = "Favorites", id = R.drawable.baseline_assistant_24,navController,currentUser, marketPreferences, userPreferences, onLogOutClick,viewModel)
+            ScaffoldLayout(activityName = "FAVORITES", id = R.drawable.baseline_assistant_24,navController,currentUser, marketPreferences, userPreferences, onLogOutClick,viewModel)
         }
         composable("Settings"){
-            ScaffoldLayout(activityName = "Settings", id =R.drawable.baseline_app_settings_alt_24,navController, currentUser, marketPreferences, userPreferences, onLogOutClick,viewModel)
+            ScaffoldLayout(activityName = "SETTINGS", id =R.drawable.baseline_app_settings_alt_24,navController, currentUser, marketPreferences, userPreferences, onLogOutClick,viewModel)
 
         }
 
