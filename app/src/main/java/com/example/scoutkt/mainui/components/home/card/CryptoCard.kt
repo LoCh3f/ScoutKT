@@ -26,7 +26,7 @@ import com.example.scoutkt.mainui.components.home.chart.LineChart
 @Composable
 fun StockCard(
     cryptoEntity: CryptoEntity, // Passa l'oggetto CryptoEntity come argomento
-    history: List<HistoricalData>,
+    history: List<HistoricalData>? = null,
     onHeartClick: () -> Unit // Azione da eseguire quando si clicca sul cuore
 
 ) {

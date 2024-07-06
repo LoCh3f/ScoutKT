@@ -1,5 +1,6 @@
-package com.example.scoutkt.mainui.components.home.scroll
+package com.example.scoutkt.mainui.components.favorite
 
+import androidx.compose.runtime.Composable
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
@@ -8,8 +9,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.currentCompositionErrors
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -23,7 +22,7 @@ import com.example.scoutkt.data.preferences.MarketPreferences
 import com.example.scoutkt.mainui.components.home.card.StockCard
 
 @Composable
-fun ScrollingStock(
+fun FavoritesStock(
     innerPadding: PaddingValues,
     viewModel: CryptoViewModel,
     currentUser: CurrentUser,
@@ -31,6 +30,9 @@ fun ScrollingStock(
 ) {
     val cryptoList = viewModel.cryptos.observeAsState(initial = emptyList()).value
     val history = viewModel.history.observeAsState(initial = emptyList()).value
+    val favorites by remember {
+        mutableStateOf(currentUser.getCurrentUser()?.let { marketPreferences.getFavourites(it) })
+    }
     LazyColumn(
         modifier = Modifier
             .background(color = MaterialTheme.colorScheme.background)
@@ -41,14 +43,11 @@ fun ScrollingStock(
         contentPadding = PaddingValues(16.dp)
     ) {
         items(cryptoList) { crypto ->
-            StockCard(cryptoEntity = crypto,history) {
-                if (currentUser.getCurrentUser()
-                        ?.let { marketPreferences.isFavourite(it,crypto.symbol) } == true
-                ) {
-                    marketPreferences.removeFavourite(currentUser.getCurrentUser()!!,crypto.symbol)
-                } else {
-                    currentUser.getCurrentUser()
-                     ?.let { marketPreferences.saveFavourite(it,crypto.symbol) }
+            if (currentUser.getCurrentUser()?.let
+                { marketPreferences.isFavourite(it,crypto.symbol) } == true) {
+                StockCard(cryptoEntity = crypto, history) {
+                    marketPreferences.removeFavourite(currentUser.getCurrentUser()!!, crypto.symbol)
+
                 }
             }
         }

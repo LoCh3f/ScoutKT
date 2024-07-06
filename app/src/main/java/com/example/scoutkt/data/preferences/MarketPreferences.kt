@@ -33,4 +33,25 @@ class MarketPreferences(context: Context) {
             emptyList()
         }
     }
+
+    fun isFavourite(user: String, symbol: String): Boolean {
+        val currentFavourites = getFavourites(user)
+        return currentFavourites.contains(symbol)
+    }
+
+    fun removeFavourite(user: String, symbol: String) {
+        val currentFavourites = getFavourites(user).toMutableList()
+
+        // Rimuovi la criptovaluta dalla lista se è presente
+        if (currentFavourites.contains(symbol)) {
+            currentFavourites.remove(symbol)
+        }
+
+        // Salva la lista aggiornata
+        val editor = sharedPreferences.edit()
+        val favJson = gson.toJson(currentFavourites)
+        editor.putString(user, favJson)
+        editor.apply()
+    }
+
 }
