@@ -3,6 +3,7 @@ package com.example.scoutkt.mainui.components.home.card
 import android.util.Log
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
@@ -13,6 +14,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
@@ -50,12 +52,19 @@ fun StockCard(
             ) {
                 val context = LocalContext.current
                 Log.d("LOGO","Logo: ${cryptoEntity.symbol}")
-                Image(painter = painterResource(id = context.getDrawableIdByName(cryptoEntity.symbol.lowercase())  ),
-                    contentDescription = "Logo",
+                Box(
                     modifier = Modifier
                         .width(50.dp)
                         .height(50.dp)
-                        .clip(CircleShape))
+                        .clip(CircleShape)
+                ) {
+                    Image(
+                        painter = painterResource(id = context.getDrawableIdByName(cryptoEntity.symbol.lowercase())),
+                        contentDescription = "Logo",
+                        modifier = Modifier.fillMaxSize(),
+                        contentScale = ContentScale.Crop
+                    )
+                }
                 Spacer(modifier = Modifier.width(8.dp))
                 Column(horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.Center) {
 
