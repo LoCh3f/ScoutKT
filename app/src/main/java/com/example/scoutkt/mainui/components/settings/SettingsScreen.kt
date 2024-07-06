@@ -39,13 +39,16 @@ fun SettingsScreen(
     userPreferences: UserPreferences,
     currentUser: CurrentUser
 ) {
-    var profileImageUri by remember { mutableStateOf<Uri?>(currentUser.getCurrentUser()
-        ?.let { userPreferences.getImageUri(it) }) }
+    var profileImageUri by remember { mutableStateOf<Uri?>(currentUser.getCurrentUser()?.let { userPreferences.getImageUri(it) }) }
     var showDialog by remember { mutableStateOf(false) }
     var contentScale by remember { mutableStateOf(ContentScale.Crop) } // State for content scale
     val ctx = LocalContext.current
 
-    val cameraLauncher = rememberCameraLauncher()
+    val cameraLauncher = rememberCameraLauncher { uri ->
+        if (uri != null) {
+            profileImageUri = uri
+        }
+    }
 
     val cameraPermission = rememberPermission(Manifest.permission.CAMERA) { status ->
         if (status.isGranted) {
@@ -105,11 +108,8 @@ fun SettingsScreen(
                 .clip(CircleShape)
                 .border(2.dp, Color.Gray, CircleShape)
                 .clickable { showDialog = true } // Show dialog on image click
-
-
         ) {
-
-             if (profileImageUri != null) {
+            if (profileImageUri != null) {
                 AsyncImage(
                     ImageRequest.Builder(ctx)
                         .data(profileImageUri)
@@ -121,8 +121,7 @@ fun SettingsScreen(
                 )
                 currentUser.getCurrentUser()
                     ?.let { userPreferences.saveImage(it,profileImageUri.toString()) }
-            }
-             else {
+            } else {
                 Image(
                     painter = painterResource(id = R.drawable.droid_head), // Placeholder image in your resources
                     contentDescription = null,
