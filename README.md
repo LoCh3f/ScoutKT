@@ -1,3 +1,3 @@
 <p align="center">
-  <img src="https://github.com/LoCh3f/ScoutKT/app/src/main/res/mipmap-xxxhdpi/logo_round.webp" alt="Descrizione dell'immagine" />
+  <img src="https://github.com/LoCh3f/ScoutKT/app/src/main/res/drawable/main_logo.jpg" alt="ScoutKT Logo" />
 </p>
