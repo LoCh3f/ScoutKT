@@ -1,10 +1,14 @@
 package com.example.scoutkt.mainui.components.home.chart
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
@@ -29,22 +33,25 @@ fun LineChart() {
         Point(1f,90f),
         Point(2f,0f),
         Point(3f,60f),
-        Point(4f,10f)
+        Point(4f,10f),
+        Point(5f,40f),
+        Point(6f,90f),
+        Point(7f,0f),
+        Point(8f,60f),
+        Point(9f,10f)
     )
     val xAxisData = AxisData.Builder()
         .axisStepSize(50.dp)
-        .backgroundColor(Color.Transparent)
+        .backgroundColor(Color.White)
         .steps(pointsData.size - 1)
         .labelData { i -> i.toString() }
-        .labelAndAxisLinePadding(7.dp)
         .axisLabelColor(MaterialTheme.colorScheme.tertiary)
         .axisLineColor(MaterialTheme.colorScheme.tertiary)
         .build()
 
     val yAxisData = AxisData.Builder()
         .steps(steps)
-        .backgroundColor(Color.Transparent)
-        .labelAndAxisLinePadding(10.dp)
+        .backgroundColor(Color.White)
         .labelData { i ->
             val yscale = 100/ steps
             (i * yscale).toString()
@@ -54,6 +61,12 @@ fun LineChart() {
         .build()
 
     val lineCharData = LineChartData(
+        paddingRight = 0.dp,
+        paddingTop = 35.dp,
+        bottomPadding = 0.dp,
+        containerPaddingEnd = 0.dp,
+        backgroundColor = Color.White,
+
         linePlotData = LinePlotData(
             lines = listOf(
                 Line(dataPoints = pointsData,
@@ -63,10 +76,10 @@ fun LineChart() {
                     ), IntersectionPoint(
                         color = MaterialTheme.colorScheme.tertiary
                     ),
-                    SelectionHighlightPoint(color = MaterialTheme.colorScheme.primary),
+                    SelectionHighlightPoint(),
                     ShadowUnderLine(alpha = 0.5f,
                         brush = Brush.verticalGradient(
-                            colors = listOf(MaterialTheme.colorScheme.inversePrimary,Color.Transparent)
+                            colors = listOf(MaterialTheme.colorScheme.inversePrimary,Color.White)
                         )
                     ),
                     SelectionHighlightPopUp()
@@ -74,13 +87,14 @@ fun LineChart() {
 
             ),
         ),
-        backgroundColor = MaterialTheme.colorScheme.surface,
         xAxisData = xAxisData,
         yAxisData = yAxisData,
-        gridLines = GridLines(color = MaterialTheme.colorScheme.outline)
+        gridLines = GridLines()
     )
 
-    co.yml.charts.ui.linechart.LineChart(modifier = Modifier.fillMaxSize().height(300.dp),
+    co.yml.charts.ui.linechart.LineChart(modifier = Modifier.height(400.dp).fillMaxWidth().clip(
+        RoundedCornerShape(16.dp)
+    ),
         lineChartData = lineCharData)
 
 }
