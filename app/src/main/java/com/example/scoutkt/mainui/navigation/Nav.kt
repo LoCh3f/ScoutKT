@@ -10,7 +10,6 @@ import com.example.scoutkt.R
 import com.example.scoutkt.data.preferences.CurrentUser
 import com.example.scoutkt.data.preferences.MarketPreferences
 import com.example.scoutkt.data.preferences.UserPreferences
-import com.example.scoutkt.mainui.components.ScaffoldLayout
 
 
 @Composable

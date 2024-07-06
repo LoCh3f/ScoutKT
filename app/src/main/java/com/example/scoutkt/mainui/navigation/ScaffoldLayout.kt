@@ -1,4 +1,4 @@
-package com.example.scoutkt.mainui.components
+package com.example.scoutkt.mainui.navigation
 
 import androidx.annotation.DrawableRes
 import androidx.compose.material3.Scaffold
