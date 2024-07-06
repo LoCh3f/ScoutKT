@@ -1,17 +1,20 @@
-package com.example.scoutkt.mainui.components.home
+package com.example.scoutkt.mainui.components.home.card
 
 import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
-import androidx.room.util.TableInfo
 import com.example.scoutkt.R
 import com.example.scoutkt.data.db.crypto.CryptoEntity
 import com.example.scoutkt.data.remote.crypto.HistoricalData
@@ -44,10 +47,13 @@ fun StockCard(
                 horizontalArrangement = Arrangement.SpaceBetween,
                 modifier = Modifier.fillMaxWidth()
             ) {
-                Text(
-                    text = cryptoEntity.symbol,
-                    style = MaterialTheme.typography.bodyMedium
-                )
+                val context = LocalContext.current
+                Image(painter = painterResource(id = context.getDrawableIdByName(cryptoEntity.symbol.lowercase())  ),
+                    contentDescription = "Logo",
+                    modifier = Modifier
+                        .width(50.dp)
+                        .height(50.dp)
+                        .clip(CircleShape))
                 Spacer(modifier = Modifier.width(8.dp))
                 Column(horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.Center) {
 
@@ -62,7 +68,6 @@ fun StockCard(
                         color = if (cryptoEntity.percentChange1h!! < 0) Color.Red else Color.Green
                     )
                 }
-
                 Spacer(modifier = Modifier.weight(1f))
                 IconButton(
                     onClick = {
@@ -79,6 +84,10 @@ fun StockCard(
             }
             AnimatedVisibility(visible = expanded) {
                 Column {
+                    Text(
+                        text = cryptoEntity.symbol,
+                        style = MaterialTheme.typography.bodyMedium
+                    )
                     LineChart()
                     Text(
                         text = cryptoEntity.name,

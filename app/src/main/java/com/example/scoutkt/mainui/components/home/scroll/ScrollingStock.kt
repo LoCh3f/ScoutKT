@@ -14,11 +14,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.example.scoutkt.CryptoViewModel
 import androidx.compose.runtime.livedata.observeAsState
-import androidx.compose.ui.platform.LocalContext
-import com.example.scoutkt.mainui.components.home.StockCard
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.currentCoroutineContext
+import com.example.scoutkt.mainui.components.home.card.StockCard
 
 @Composable
 fun ScrollingStock(
