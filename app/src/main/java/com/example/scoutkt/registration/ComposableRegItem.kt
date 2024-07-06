@@ -58,7 +58,7 @@ fun RegistrationScreen(userPreferences: UserPreferences, currentUser: CurrentUse
             contentDescription = "App Logo",
         )
         Spacer(modifier = Modifier.height(16.dp))
-        Text(text = "Sign Up")
+        Text(text = "Sign Up", color = MaterialTheme.colorScheme.tertiary, style = MaterialTheme.typography.titleLarge)
         Spacer(modifier = Modifier.height(16.dp))
 
         OutlinedTextField(

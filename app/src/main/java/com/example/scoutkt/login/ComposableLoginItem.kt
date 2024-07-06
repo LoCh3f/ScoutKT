@@ -47,6 +47,8 @@ fun LoginPage(
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
+        Text( text = "Welcome back on ScoutKt",color= MaterialTheme.colorScheme.tertiary, style = MaterialTheme.typography.titleLarge)
+        Spacer(modifier = Modifier.height(16.dp))
 
         Image(modifier = Modifier.clip(CircleShape),
             painter = painterResource(id = R.drawable.main_logo), // Sostituisci con il tuo ID risorsa
@@ -54,7 +56,7 @@ fun LoginPage(
         )
         Spacer(modifier = Modifier.height(16.dp))
 
-        Text( text = "Sing In", style = MaterialTheme.typography.titleLarge)
+        Text( text = "Sing In", color= MaterialTheme.colorScheme.tertiary, style = MaterialTheme.typography.titleLarge)
         Spacer(modifier = Modifier.height(16.dp))
 
         OutlinedTextField(
