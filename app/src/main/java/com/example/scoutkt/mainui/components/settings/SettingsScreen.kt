@@ -57,8 +57,7 @@ fun SettingsScreen(
     val cameraLauncher = rememberCameraLauncher { uri ->
         if (uri != null) {
             profileImageUri = uri
-            currentUser.getCurrentUser()
-                ?.let { userPreferences.saveImage(it, uri.toString()) }
+
         }
     }
 
@@ -80,8 +79,6 @@ fun SettingsScreen(
     val launcherPickImage = rememberLauncherForActivityResult(ActivityResultContracts.GetContent()) { uri ->
         if (uri != null) {
             profileImageUri = uri
-            currentUser.getCurrentUser()
-                ?.let { userPreferences.saveImage(it, uri.toString()) }
         }
     }
 
