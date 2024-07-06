@@ -41,16 +41,19 @@ fun ScrollingStock(
         contentPadding = PaddingValues(16.dp)
     ) {
         items(cryptoList) { crypto ->
-            StockCard(cryptoEntity = crypto,history) {
-                if (currentUser.getCurrentUser()
-                        ?.let { marketPreferences.isFavourite(it,crypto.symbol) } == true
-                ) {
-                    marketPreferences.removeFavourite(currentUser.getCurrentUser()!!,crypto.symbol)
-                } else {
-                    currentUser.getCurrentUser()
-                     ?.let { marketPreferences.saveFavourite(it,crypto.symbol) }
+            currentUser.getCurrentUser()
+                ?.let { marketPreferences.isFavourite(it,crypto.symbol) }?.let {
+                    StockCard(cryptoEntity = crypto,history, selected = it) {
+                        if (currentUser.getCurrentUser()
+                                ?.let { marketPreferences.isFavourite(it,crypto.symbol) } == true
+                        ) {
+                            marketPreferences.removeFavourite(currentUser.getCurrentUser()!!,crypto.symbol)
+                        } else {
+                            currentUser.getCurrentUser()
+                                ?.let { marketPreferences.saveFavourite(it,crypto.symbol) }
+                        }
+                    }
                 }
-            }
         }
     }
 }

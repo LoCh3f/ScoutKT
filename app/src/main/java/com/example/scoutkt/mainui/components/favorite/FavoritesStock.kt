@@ -45,7 +45,7 @@ fun FavoritesStock(
         items(cryptoList) { crypto ->
             if (currentUser.getCurrentUser()?.let
                 { marketPreferences.isFavourite(it,crypto.symbol) } == true) {
-                StockCard(cryptoEntity = crypto, history) {
+                StockCard(cryptoEntity = crypto, history, selected = true) {
                     marketPreferences.removeFavourite(currentUser.getCurrentUser()!!, crypto.symbol)
 
                 }

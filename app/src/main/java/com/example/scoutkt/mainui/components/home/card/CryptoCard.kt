@@ -27,7 +27,9 @@ import com.example.scoutkt.mainui.components.home.chart.LineChart
 fun StockCard(
     cryptoEntity: CryptoEntity, // Passa l'oggetto CryptoEntity come argomento
     history: List<HistoricalData>? = null,
-    onHeartClick: () -> Unit // Azione da eseguire quando si clicca sul cuore
+    selected: Boolean,
+    onHeartClick: () -> Unit, // Azione da eseguire quando si clicca sul cuore
+
 
 ) {
     Card(
@@ -38,7 +40,7 @@ fun StockCard(
         elevation = CardDefaults.cardElevation(4.dp)
     ) {
         var expanded by remember { mutableStateOf(false) }
-        var isHeartSelected by remember { mutableStateOf(false) }
+        var isHeartSelected by remember { mutableStateOf(selected) }
 
         Column(
             modifier = Modifier
