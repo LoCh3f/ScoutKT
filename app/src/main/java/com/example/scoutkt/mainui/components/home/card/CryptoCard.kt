@@ -1,5 +1,6 @@
 package com.example.scoutkt.mainui.components.home.card
 
+import android.util.Log
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
@@ -48,6 +49,7 @@ fun StockCard(
                 modifier = Modifier.fillMaxWidth()
             ) {
                 val context = LocalContext.current
+                Log.d("LOGO","Logo: ${cryptoEntity.symbol}")
                 Image(painter = painterResource(id = context.getDrawableIdByName(cryptoEntity.symbol.lowercase())  ),
                     contentDescription = "Logo",
                     modifier = Modifier
@@ -88,7 +90,6 @@ fun StockCard(
                         text = cryptoEntity.symbol,
                         style = MaterialTheme.typography.bodyMedium
                     )
-                    LineChart()
                     Text(
                         text = cryptoEntity.name,
                         style = MaterialTheme.typography.bodyMedium,
@@ -104,7 +105,10 @@ fun StockCard(
                         style = MaterialTheme.typography.bodyMedium,
                         modifier = Modifier.padding(top = 8.dp)
                     )
-                    // Aggiungi altre informazioni necessarie
+                    Spacer(modifier = Modifier.height(8.dp))
+
+                    LineChart()
+
                 }
             }
         }
