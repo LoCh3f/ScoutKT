@@ -47,6 +47,8 @@ fun SettingsScreen(
     val cameraLauncher = rememberCameraLauncher { uri ->
         if (uri != null) {
             profileImageUri = uri
+            currentUser.getCurrentUser()?.let { userPreferences.saveImage(it,profileImageUri.toString()) }
+
         }
     }
 
@@ -68,6 +70,8 @@ fun SettingsScreen(
     val launcherPickImage = rememberLauncherForActivityResult(ActivityResultContracts.GetContent()) { uri ->
         if (uri != null) {
             profileImageUri = uri
+            currentUser.getCurrentUser()?.let { userPreferences.saveImage(it,profileImageUri.toString()) }
+
         }
     }
 
@@ -97,19 +101,32 @@ fun SettingsScreen(
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .padding(innerPadding)
+            .padding(innerPadding),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center
     ) {
         // Profile Image
+        Text(text = "${currentUser.getCurrentUser()?.let { userPreferences.getUser(it)?.username  }}",
+                color = MaterialTheme.colorScheme.tertiary, style = MaterialTheme.typography.titleLarge)
         Box(
             modifier = Modifier
-                .size(100.dp)
+                .size(150.dp)
                 .padding(16.dp)
                 .align(Alignment.CenterHorizontally)
                 .clip(CircleShape)
                 .border(2.dp, Color.Gray, CircleShape)
                 .clickable { showDialog = true } // Show dialog on image click
         ) {
-            if (profileImageUri != null) {
+            if (currentUser.getCurrentUser()?.let { userPreferences.getUser(it)?.profileImagePath } == null) {
+                Image(
+                    painter = painterResource(id = R.drawable.droid_head), // Placeholder image in your resourcesf
+                    contentDescription = null,
+                    modifier = Modifier.fillMaxSize(),
+                    contentScale = contentScale // Set content scale
+                )
+
+
+            } else {
                 AsyncImage(
                     ImageRequest.Builder(ctx)
                         .data(profileImageUri)
@@ -121,13 +138,6 @@ fun SettingsScreen(
                 )
                 currentUser.getCurrentUser()
                     ?.let { userPreferences.saveImage(it,profileImageUri.toString()) }
-            } else {
-                Image(
-                    painter = painterResource(id = R.drawable.droid_head), // Placeholder image in your resources
-                    contentDescription = null,
-                    modifier = Modifier.fillMaxSize(),
-                    contentScale = contentScale // Set content scale
-                )
             }
         }
         Spacer(modifier = Modifier.weight(1f))
