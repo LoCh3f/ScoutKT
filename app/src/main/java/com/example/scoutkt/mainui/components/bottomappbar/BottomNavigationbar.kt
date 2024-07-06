@@ -32,14 +32,14 @@ fun SimpleNavigationBar(navController: NavController) {
             .alignByBaseline(), horizontalArrangement = Arrangement.Center,
             verticalAlignment = Alignment.CenterVertically)
         {
+            Button(onClick = { navController.navigate("Favorites") }, modifier = Modifier.padding(5.dp)) {
+                Image(painter = painterResource(R.drawable.baseline_assistant_24), contentDescription ="" )
+            }
 
             Button(onClick = { navController.navigate("Home") }, modifier = Modifier.padding(5.dp)) {
                 Image(painter = painterResource(R.drawable.baseline_home_24), contentDescription = "")
             }
-            Button(onClick = { navController.navigate("Favorites") }, modifier = Modifier.padding(5.dp)) {
-                Image(painter = painterResource(R.drawable.baseline_assistant_24), contentDescription ="" )
 
-            }
             Button(onClick = { navController.navigate("Settings") }, modifier = Modifier.padding(5.dp)) {
                 Image(painter = painterResource(R.drawable.baseline_app_settings_alt_24), contentDescription ="" )
             }
