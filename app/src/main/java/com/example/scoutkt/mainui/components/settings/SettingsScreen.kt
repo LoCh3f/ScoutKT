@@ -47,7 +47,6 @@ fun SettingsScreen(
     val cameraLauncher = rememberCameraLauncher { uri ->
         if (uri != null) {
             profileImageUri = uri
-            currentUser.getCurrentUser()?.let { userPreferences.saveImage(it,profileImageUri.toString()) }
 
         }
     }
@@ -70,7 +69,6 @@ fun SettingsScreen(
     val launcherPickImage = rememberLauncherForActivityResult(ActivityResultContracts.GetContent()) { uri ->
         if (uri != null) {
             profileImageUri = uri
-            currentUser.getCurrentUser()?.let { userPreferences.saveImage(it,profileImageUri.toString()) }
 
         }
     }
@@ -147,7 +145,8 @@ fun SettingsScreen(
             modifier = Modifier
                 .align(Alignment.CenterHorizontally)
                 .padding(top = 16.dp)
-                .size(100.dp) // Set the size of the button
+                .size(100.dp), // Set the size of the button
+                shape =  ButtonDefaults.textShape
         ) {
             Text(text = "Logout", color = Color.White)
         }
