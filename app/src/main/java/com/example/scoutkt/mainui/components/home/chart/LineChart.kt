@@ -1,5 +1,8 @@
 package com.example.scoutkt.mainui.components.home.chart
 
+import android.annotation.SuppressLint
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -24,34 +27,42 @@ import co.yml.charts.ui.linechart.model.LineType
 import co.yml.charts.ui.linechart.model.SelectionHighlightPoint
 import co.yml.charts.ui.linechart.model.SelectionHighlightPopUp
 import co.yml.charts.ui.linechart.model.ShadowUnderLine
+import java.util.stream.Collector
+import java.util.stream.Collectors
+import kotlin.streams.toList
 
+@SuppressLint("DefaultLocale")
+@RequiresApi(Build.VERSION_CODES.UPSIDE_DOWN_CAKE)
 @Composable
 fun LineChart(price: Double, change1h: Float, change24h: Float,change7d: Float,change30d: Float,change60d: Float,change90d: Float) {
-    val  steps = 5
-    val pointsData = listOf(
-        Point(1f,previousVal(change1h,price).toString().toFloat()),
-        Point(2f, previousVal(change24h,price).toString().toFloat()),
-        Point(3f, previousVal(change7d,price).toString().toFloat()),
-        Point(4f, previousVal(change30d,price).toString().toFloat()),
-        Point(5f, previousVal(change60d,price).toString().toFloat()),
-        Point(6f, previousVal(change90d,price).toString().toFloat()),
-
-
-
+    val  steps = 6
+    val previousValues = listOf(
+        price.toFloat(),
+        previousVal(change90d, price),
+        previousVal(change60d, price),
+        previousVal(change30d, price),
+        previousVal(change7d, price),
+        previousVal(change24h, price),
+        previousVal(change1h, price)
     )
+
+    val pointsData = previousValues.stream()
+        .map { v -> Point(previousValues.indexOf(v).toFloat(),v.toFloat()) }
+        .collect(Collectors.toList())
+
+
     val label = listOf(
-        "0",
         "90d",
         "60d",
         "30d",
         "7d",
         "24h",
-        "1h"
-    )
+        "1h",
+        "Now")
     val xAxisData = AxisData.Builder()
         .axisStepSize(50.dp)
         .backgroundColor(Color.White)
-        .steps(pointsData.size)
+        .steps(label.size - 1 )
         .labelData { i -> label[i] }
         .axisLabelColor(MaterialTheme.colorScheme.tertiary)
         .axisLineColor(MaterialTheme.colorScheme.tertiary)
@@ -60,10 +71,7 @@ fun LineChart(price: Double, change1h: Float, change24h: Float,change7d: Float,c
     val yAxisData = AxisData.Builder()
         .steps(steps)
         .backgroundColor(Color.White)
-        .labelData { i ->
-            val yscale = 100/ steps
-            (i * yscale).toString()
-        }
+        .labelData {i -> previousValues.sorted()[i].toString()}
         .axisLabelDescription { "$" }
         .axisLineColor(MaterialTheme.colorScheme.tertiary)
         .axisLabelColor(MaterialTheme.colorScheme.tertiary)
@@ -91,7 +99,10 @@ fun LineChart(price: Double, change1h: Float, change24h: Float,change7d: Float,c
                             colors = listOf(MaterialTheme.colorScheme.inversePrimary,Color.White)
                         )
                     ),
-                    SelectionHighlightPopUp()
+                    SelectionHighlightPopUp(popUpLabel =  { x, y ->
+                        val xLabel = "Price ${label.get(x.toInt())} Ago:"
+                        val yLabel = "$ ${String. format("%.2f", y)}"
+                        "$xLabel $yLabel"     })
                 )
 
             ),
@@ -108,6 +119,6 @@ fun LineChart(price: Double, change1h: Float, change24h: Float,change7d: Float,c
 
 }
 
-private fun previousVal(variation: Float,actualPrice: Double): Double {
-    return actualPrice / 1 - (variation / 100)
+private fun previousVal(variation: Float, actualPrice: Double): Float {
+    return (actualPrice / (1 - (variation / 100))).toFloat()
 }
