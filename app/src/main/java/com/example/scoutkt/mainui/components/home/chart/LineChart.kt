@@ -26,25 +26,33 @@ import co.yml.charts.ui.linechart.model.SelectionHighlightPopUp
 import co.yml.charts.ui.linechart.model.ShadowUnderLine
 
 @Composable
-fun LineChart() {
+fun LineChart(price: Double, change1h: Float, change24h: Float,change7d: Float,change30d: Float,change60d: Float,change90d: Float) {
     val  steps = 5
     val pointsData = listOf(
-        Point(0f,40f),
-        Point(1f,90f),
-        Point(2f,0f),
-        Point(3f,60f),
-        Point(4f,10f),
-        Point(5f,40f),
-        Point(6f,90f),
-        Point(7f,0f),
-        Point(8f,60f),
-        Point(9f,10f)
+        Point(1f,previousVal(change1h,price).toString().toFloat()),
+        Point(2f, previousVal(change24h,price).toString().toFloat()),
+        Point(3f, previousVal(change7d,price).toString().toFloat()),
+        Point(4f, previousVal(change30d,price).toString().toFloat()),
+        Point(5f, previousVal(change60d,price).toString().toFloat()),
+        Point(6f, previousVal(change90d,price).toString().toFloat()),
+
+
+
+    )
+    val label = listOf(
+        "0",
+        "90d",
+        "60d",
+        "30d",
+        "7d",
+        "24h",
+        "1h"
     )
     val xAxisData = AxisData.Builder()
         .axisStepSize(50.dp)
         .backgroundColor(Color.White)
-        .steps(pointsData.size - 1)
-        .labelData { i -> i.toString() }
+        .steps(pointsData.size)
+        .labelData { i -> label[i] }
         .axisLabelColor(MaterialTheme.colorScheme.tertiary)
         .axisLineColor(MaterialTheme.colorScheme.tertiary)
         .build()
@@ -56,6 +64,7 @@ fun LineChart() {
             val yscale = 100/ steps
             (i * yscale).toString()
         }
+        .axisLabelDescription { "$" }
         .axisLineColor(MaterialTheme.colorScheme.tertiary)
         .axisLabelColor(MaterialTheme.colorScheme.tertiary)
         .build()
@@ -97,4 +106,8 @@ fun LineChart() {
     ),
         lineChartData = lineCharData)
 
+}
+
+private fun previousVal(variation: Float,actualPrice: Double): Double {
+    return actualPrice / 1 - (variation / 100)
 }

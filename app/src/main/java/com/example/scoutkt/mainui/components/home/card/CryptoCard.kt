@@ -146,7 +146,13 @@ fun StockCard(
                     )
                     Spacer(modifier = Modifier.height(8.dp))
 2
-                    LineChart()
+                    cryptoEntity.percentChange1h?.let {
+                        cryptoEntity.   price?.let { it1 ->
+                            LineChart(
+                                it1,
+                                it,cryptoEntity.percentChange24h,cryptoEntity.percentChange7d,cryptoEntity.percentChange30d,cryptoEntity.percentChange60d,cryptoEntity.percentChange90d)
+                        }
+                    }
 
                 }
             }
