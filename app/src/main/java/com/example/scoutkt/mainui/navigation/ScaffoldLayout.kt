@@ -18,32 +18,33 @@ import com.example.scoutkt.mainui.components.settings.SettingsScreen
 
 @Composable
 fun ScaffoldLayout(activityName: String, @DrawableRes id: Int,navController: NavController,currentUser: CurrentUser,marketPreferences: MarketPreferences, userPreferences: UserPreferences, onLogOutClick: () -> Unit,viewModel: CryptoViewModel) {
-    viewModel.refreshCryptos()
-    if (id == R.drawable.baseline_home_24) {
-        Scaffold(modifier = Modifier,
-            topBar = { AppHeader(activityName = activityName, id = id)},
-            bottomBar = { SimpleNavigationBar(navController) }
-        )
+    when (id) {
+        R.drawable.baseline_home_24 -> {
+            Scaffold(modifier = Modifier,
+                topBar = { AppHeader(activityName = activityName, id = id)},
+                bottomBar = { SimpleNavigationBar(navController) }
+            )
             {innerPadding ->
                 ScrollingStock(innerPadding = innerPadding,viewModel,currentUser,marketPreferences)
             }
-    }
-    else if (id == R.drawable.baseline_app_settings_alt_24) {
-        Scaffold(modifier = Modifier,
-            topBar = { AppHeader(activityName = activityName, id = id)},
-            bottomBar = { SimpleNavigationBar(navController) }
-        )
-        { innerPadding ->
-            SettingsScreen (onLogOutClick,innerPadding,userPreferences,currentUser)
         }
-    }
-    else if (id == R.drawable.baseline_assistant_24) {
-        Scaffold(modifier = Modifier,
-            topBar = { AppHeader(activityName = activityName, id = id)},
-            bottomBar = { SimpleNavigationBar(navController) }
-        )
-        {innerPadding ->
-            FavoritesStock(innerPadding = innerPadding,viewModel,currentUser, marketPreferences)
+        R.drawable.baseline_app_settings_alt_24 -> {
+            Scaffold(modifier = Modifier,
+                topBar = { AppHeader(activityName = activityName, id = id)},
+                bottomBar = { SimpleNavigationBar(navController) }
+            )
+            { innerPadding ->
+                SettingsScreen (onLogOutClick,innerPadding,userPreferences,currentUser)
+            }
+        }
+        R.drawable.baseline_assistant_24 -> {
+            Scaffold(modifier = Modifier,
+                topBar = { AppHeader(activityName = activityName, id = id)},
+                bottomBar = { SimpleNavigationBar(navController) }
+            )
+            {innerPadding ->
+                FavoritesStock(innerPadding = innerPadding,viewModel,currentUser, marketPreferences)
+            }
         }
     }
 
