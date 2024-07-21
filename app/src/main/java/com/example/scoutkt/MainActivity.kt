@@ -6,6 +6,9 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.lifecycle.ViewModelProvider
+import androidx.work.PeriodicWorkRequestBuilder
+import androidx.work.WorkManager
+import androidx.work.WorkRequest
 import com.example.scoutkt.data.preferences.CurrentUser
 import com.example.scoutkt.data.preferences.MarketPreferences
 import com.example.scoutkt.data.preferences.UserPreferences
@@ -13,6 +16,7 @@ import com.example.scoutkt.login.LoginActivity
 import com.example.scoutkt.mainui.navigation.ComposeNavigation
 
 import com.example.scoutkt.mainui.theme.ScoutKTTheme
+import java.util.concurrent.TimeUnit
 
 class MainActivity : ComponentActivity() {
     private lateinit var currentUser: CurrentUser
@@ -39,6 +43,13 @@ class MainActivity : ComponentActivity() {
                 )
             }
         }
+        scheduleCryptoUpdates()
+    }
+    private fun scheduleCryptoUpdates() {
+        val workRequest: WorkRequest = PeriodicWorkRequestBuilder<CryptoUpdateWorker>(1, TimeUnit.HOURS)
+            .build()
+
+        WorkManager.getInstance(this).enqueue(workRequest)
     }
 }
 

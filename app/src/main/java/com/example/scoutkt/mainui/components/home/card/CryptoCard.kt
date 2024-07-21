@@ -60,12 +60,21 @@ fun StockCard(
                         .height(50.dp)
                         .clip(CircleShape)
                 ) {
+                    if (context.getDrawableIdByName(cryptoEntity.symbol.lowercase()) == 0){
+                        Image(
+                            painter = painterResource(R.drawable.droid_head),
+                            contentDescription = "Logo",
+                            modifier = Modifier.fillMaxSize(),
+                            contentScale = ContentScale.Crop
+                        )
+                    } else {
                     Image(
                         painter = painterResource(id = context.getDrawableIdByName(cryptoEntity.symbol.lowercase())),
                         contentDescription = "Logo",
                         modifier = Modifier.fillMaxSize(),
                         contentScale = ContentScale.Crop
                     )
+                    }
                 }
                 Spacer(modifier = Modifier.width(8.dp))
                 Column(horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.Center) {
