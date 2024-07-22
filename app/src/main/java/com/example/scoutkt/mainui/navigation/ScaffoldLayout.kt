@@ -34,7 +34,7 @@ fun ScaffoldLayout(activityName: String, @DrawableRes id: Int,navController: Nav
                 bottomBar = { SimpleNavigationBar(navController) }
             )
             { innerPadding ->
-                SettingsScreen (onLogOutClick,innerPadding,userPreferences,currentUser)
+                SettingsScreen (onLogOutClick,innerPadding,userPreferences,currentUser, onRefreshClick = {viewModel.refreshCryptos()})
             }
         }
         R.drawable.baseline_assistant_24 -> {

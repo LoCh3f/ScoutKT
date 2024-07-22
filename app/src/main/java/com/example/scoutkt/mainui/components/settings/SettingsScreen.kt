@@ -36,7 +36,8 @@ fun SettingsScreen(
     onLogoutClick: () -> Unit,
     innerPadding: PaddingValues,
     userPreferences: UserPreferences,
-    currentUser: CurrentUser
+    currentUser: CurrentUser,
+    onRefreshClick: () -> Unit
 ) {
     var profileImageUri by remember { mutableStateOf<Uri?>(null) }
     var showDialog by remember { mutableStateOf(false) }
@@ -150,6 +151,9 @@ fun SettingsScreen(
 
             }
         }
+        Button(onClick = { onRefreshClick() }) {
+            Text(text = "Update Crypto")
+        }
         Spacer(modifier = Modifier.weight(1f))
         Button(
             onClick = onLogoutClick,
@@ -159,7 +163,7 @@ fun SettingsScreen(
                 .size(100.dp),
             shape = ButtonDefaults.textShape
         ) {
-            Text(text = "Logout", color = Color.White)
+            Text(text = "Logout")
         }
     }
 }
