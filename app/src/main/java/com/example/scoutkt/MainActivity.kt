@@ -45,16 +45,18 @@ class MainActivity : ComponentActivity() {
         scheduleCryptoUpdates()
     }
     private fun scheduleCryptoUpdates() {
+        val workManager = WorkManager.getInstance(this)
+
+        workManager.cancelAllWorkByTag("cryptoUpdateWork")
+
         val workRequest: WorkRequest = PeriodicWorkRequestBuilder<CryptoUpdateWorker>(1, TimeUnit.HOURS)
+            .addTag("crypto")
             .build()
 
         WorkManager.getInstance(this).enqueue(workRequest)
     }
 
-    override fun onStart() {
-        super.onStart()
-        viewModel.refreshCryptos()
-    }
+
 }
 
 

@@ -151,9 +151,7 @@ fun SettingsScreen(
 
             }
         }
-        Button(onClick = { onRefreshClick() }) {
-            Text(text = "Update Crypto")
-        }
+        //Button(onClick = { onRefreshClick() }) { Text(text = "Update Crypto") }
         Spacer(modifier = Modifier.weight(1f))
         Button(
             onClick = onLogoutClick,
